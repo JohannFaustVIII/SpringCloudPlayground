@@ -1,0 +1,6 @@
+rootProject.name = 'SpringCloudPlayground'
+include 'discovery'
+include 'first-service'
+include 'second-service'
+include 'gateway'
+
