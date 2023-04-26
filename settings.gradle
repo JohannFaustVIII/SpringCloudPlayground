@@ -3,4 +3,5 @@ include 'discovery'
 include 'first-service'
 include 'second-service'
 include 'gateway'
+include 'configuration-server'
 
