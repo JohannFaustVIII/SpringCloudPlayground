@@ -24,3 +24,9 @@ spring:
             - Path=/second/**
           filters:
             - StripPrefix=1
+        - id: thirdService
+          uri: lb://third-service
+          predicates:
+            - Path=/third/**
+          filters:
+            - StripPrefix=1
