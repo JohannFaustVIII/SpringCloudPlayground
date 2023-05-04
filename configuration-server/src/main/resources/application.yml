@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: configuration-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/JohannFaustVIII/SCPConfiguration
+          cloneOnStart: true
+  kafka:
+    bootstrapServers: localhost:29092
+
+server:
+  port: 8012

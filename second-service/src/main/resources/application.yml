@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: second-service
+  config:
+    import: configserver:http://localhost:8012
+  cloud:
+    bus:
+      enabled: true
+      id: ${spring.application.name}:${random.uuid}
+      refresh:
+        enabled: true
+      env:
+        enabled: true
+  kafka:
+    bootstrapServers: localhost:29092
+
+server:
+  port: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh, bus-env
