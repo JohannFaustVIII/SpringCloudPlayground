@@ -30,3 +30,9 @@ spring:
             - Path=/third/**
           filters:
             - StripPrefix=1
+        - id: fourthService
+          uri: lb://fourth-service
+          predicates:
+            - Path=/fourth/**
+          filters:
+            - StripPrefix=1

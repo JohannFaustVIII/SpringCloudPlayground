@@ -5,4 +5,5 @@ include 'second-service'
 include 'gateway'
 include 'configuration-server'
 include 'third-service'
+include 'fourth-service'
 
