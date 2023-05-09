@@ -7,6 +7,8 @@ spring:
         git:
           uri: https://github.com/JohannFaustVIII/SCPConfiguration
           cloneOnStart: true
+    bus:
+      enabled: true
   kafka:
     bootstrapServers: localhost:29092
 
