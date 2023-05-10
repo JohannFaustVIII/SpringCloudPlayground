@@ -36,3 +36,15 @@ spring:
             - Path=/fourth/**
           filters:
             - StripPrefix=1
+        - id: fifthService
+          uri: lb://fifth-service
+          predicates:
+            - Path=/fifth/**
+          filters:
+            - StripPrefix=1
+        - id: sixthService
+          uri: lb://sixth-service
+          predicates:
+            - Path=/sixth/**
+          filters:
+            - StripPrefix=1
