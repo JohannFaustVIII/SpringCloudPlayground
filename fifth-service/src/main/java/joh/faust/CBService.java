@@ -12,7 +12,7 @@ public class CBService {
     private final CircuitBreaker circuitBreaker;
 
     public CBService(CircuitBreakerFactory circuitBreakerFactory) {
-        this.circuitBreaker = circuitBreakerFactory.create("recomended");
+        this.circuitBreaker = circuitBreakerFactory.create("customCircuitBreaker");
         this.restTemplate = new RestTemplate();
     }
 
