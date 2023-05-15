@@ -1,3 +1,8 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+
 spring:
   application:
     name: second-service
