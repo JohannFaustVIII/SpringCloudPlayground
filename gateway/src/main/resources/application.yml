@@ -13,37 +13,37 @@ spring:
     gateway:
       routes:
         - id: firstService
-          uri: lb://first-service
+          uri: lb://1-first-service
           predicates:
             - Path=/first/**
           filters:
             - StripPrefix=1
         - id: secondService
-          uri: lb://second-service
+          uri: lb://2-second-service
           predicates:
             - Path=/second/**
           filters:
             - StripPrefix=1
         - id: thirdService
-          uri: lb://third-service
+          uri: lb://3-third-service
           predicates:
             - Path=/third/**
           filters:
             - StripPrefix=1
         - id: fourthService
-          uri: lb://fourth-service
+          uri: lb://4-fourth-service
           predicates:
             - Path=/fourth/**
           filters:
             - StripPrefix=1
         - id: fifthService
-          uri: lb://fifth-service
+          uri: lb://5-fifth-service
           predicates:
             - Path=/fifth/**
           filters:
             - StripPrefix=1
         - id: sixthService
-          uri: lb://sixth-service
+          uri: lb://6-sixth-service
           predicates:
             - Path=/sixth/**
           filters:

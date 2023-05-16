@@ -1,0 +1,37 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+  instance:
+    hostname: localhost
+    healthCheckUrl: http://${eureka.instance.hostname}:${management.server.port}/actuator/health
+    statusPageUrl: http://${eureka.instance.hostname}:${management.server.port}/actuator/info
+
+spring:
+  application:
+    name: 3-third-service
+
+server:
+  port: 0
+
+management:
+  server:
+   port: 9876
+#   port: 0  <- doesn't work as wanted
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  info:
+    java:
+      enabled: true
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ThirdService
+    version: 0.0.1
+    source: ${java.version}
+    target: ${java.version}
+

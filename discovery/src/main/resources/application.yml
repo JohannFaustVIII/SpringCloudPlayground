@@ -1,0 +1,13 @@
+server:
+  port: 18091
+
+eureka:
+  client:
+    fetchRegistry: false
+    registerWithEureka: false
+
+spring:
+  security:
+    user:
+      name: admin
+      password: examplePassword
