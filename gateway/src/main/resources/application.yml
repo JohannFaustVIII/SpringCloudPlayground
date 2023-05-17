@@ -9,6 +9,19 @@ eureka:
 spring:
   application:
     name: gateway
+  security:
+    oauth2:
+      client:
+        provider:
+          my-keycloak-provider:
+            issuer-uri: http://localhost:8180/realms/SRealm
+        registration:
+          keycloak-client:
+            provider: my-keycloak-provider
+            client-id: gateway-client
+            client-secret: QITfhzkCJAwv9p5FaO5PXG8mdCbserTu
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/keycloak'
   cloud:
     gateway:
       routes:
