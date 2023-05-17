@@ -1,8 +1,8 @@
 #!/bin/bash
 
-dicts=("kafka")
+dicts=("kafka" "keycloak")
 
-for d in $dicts
+for d in ${dicts[*]};
 do
   (cd $d && bash start.sh)
 done
