@@ -7,5 +7,6 @@ My playground to learn Spring Cloud
 - Fourth service - same as second service, reading configuration from configuration server via a bus, made to notice propagation of config between services via a bus
 - Fifth service - "client" in usage of circuit breaker, reads data from sixth service
 - Sixth service - "server" in usage of circuit breaker, provides data
+- Seventh service - service requiring authorization to get access to resources, authorization redirect and passing the token is provided by the gateway.
 
 [My Notes](NOTES.md)

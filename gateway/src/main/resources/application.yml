@@ -61,3 +61,10 @@ spring:
             - Path=/sixth/**
           filters:
             - StripPrefix=1
+        - id: seventhService
+          uri: lb://7-seventh-service
+          predicates:
+            - Path=/seventh/**
+          filters:
+            - StripPrefix=1
+            - TokenRelay=

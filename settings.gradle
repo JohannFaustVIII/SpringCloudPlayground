@@ -8,4 +8,5 @@ include 'third-service'
 include 'fourth-service'
 include 'fifth-service'
 include 'sixth-service'
+include 'seventh-service'
 

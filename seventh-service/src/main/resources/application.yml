@@ -1,0 +1,16 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+
+spring:
+  application:
+    name: 7-seventh-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8180/realms/SRealm/protocol/openid-connect/certs
+
+server:
+  port: 0
