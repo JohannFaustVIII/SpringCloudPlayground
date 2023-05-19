@@ -1,0 +1,29 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+
+
+spring:
+  application:
+    name: 9-ninth-service
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+        alphanumeric-ids:
+          enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      EightApiClientgetIntegers:
+        minimumNumberOfCalls: 4
+        failureRateThreshold: 25
+  timelimiter:
+    instances:
+      EightApiClientgetIntegers:
+        timeoutDuration: 2s
+
+server:
+  port: 0

@@ -68,3 +68,15 @@ spring:
           filters:
             - StripPrefix=1
             - TokenRelay=
+        - id: eighthService
+          uri: lb://8-eighth-service
+          predicates:
+            - Path=/eighth/**
+          filters:
+            - StripPrefix=1
+        - id: ninthService
+          uri: lb://9-ninth-service
+          predicates:
+            - Path=/ninth/**
+          filters:
+            - StripPrefix=1

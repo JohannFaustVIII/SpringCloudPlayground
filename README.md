@@ -8,5 +8,8 @@ My playground to learn Spring Cloud
 - Fifth service - "client" in usage of circuit breaker, reads data from sixth service
 - Sixth service - "server" in usage of circuit breaker, provides data
 - Seventh service - service requiring authorization to get access to resources, authorization redirect and passing the token is provided by the gateway.
+- Eighth service - simple service returning a list of integers. Made to work with Ninth service.
+- Ninth service - service using OpenFeign to communicate with eighth service + has configured circuit breaker if communication is not possible.
 
 [My Notes](NOTES.md)
+
