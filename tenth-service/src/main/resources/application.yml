@@ -1,0 +1,18 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  application:
+    name: 10-tenth-service
+
+server:
+  port: 0
+
