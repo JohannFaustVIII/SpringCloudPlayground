@@ -34,7 +34,7 @@ public class TenthServiceApi {
     )
     @GetMapping("/bye")
     public String getGoodbye() {
-        logger.info("Called Hello endpoint.");
+        logger.info("Called Goodbye endpoint.");
         return "Tenth Service: Goodbye!";
     }
 }

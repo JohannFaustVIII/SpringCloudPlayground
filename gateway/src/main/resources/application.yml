@@ -80,3 +80,9 @@ spring:
             - Path=/ninth/**
           filters:
             - StripPrefix=1
+        - id: tenthService
+          uri: lb://10-tenth-service
+          predicates:
+            - Path=/tenth/**
+          filters:
+            - StripPrefix=1
