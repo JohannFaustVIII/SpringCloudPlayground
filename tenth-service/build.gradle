@@ -20,6 +20,7 @@ ext {
 dependencies {
     implementation 'io.micrometer:micrometer-tracing-bridge-otel:1.1.1'
     implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.26.0'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp-common:1.26.0'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-web'
