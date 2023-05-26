@@ -18,6 +18,11 @@ ext {
 }
 
 dependencies {
+    implementation 'io.github.openfeign:feign-micrometer:12.3'
+    implementation 'io.micrometer:micrometer-tracing-bridge-otel:1.1.1'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.26.0'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp-common:1.26.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-circuitbreaker-resilience4j'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.boot:spring-boot-starter-web'

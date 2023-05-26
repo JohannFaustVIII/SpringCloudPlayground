@@ -3,6 +3,22 @@ eureka:
     serviceUrl:
       defaultZone: http://admin:examplePassword@localhost:18091/eureka/
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  otlp:
+    tracing:
+      endpoint: http://localhost:4318/v1/traces
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+
+logging:
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
 
 spring:
   application:
@@ -13,6 +29,8 @@ spring:
         enabled: true
         alphanumeric-ids:
           enabled: true
+      micrometer:
+        enabled: true
 
 resilience4j:
   circuitbreaker:
