@@ -1,0 +1,33 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+
+
+spring:
+  application:
+    name: 11-eleventh-service
+  kafka:
+    bootstrapServers: localhost:29092
+
+    producer:
+      clientId: ${spring.application.name}
+      keySerializer: org.apache.kafka.common.serialization.StringSerializer
+      valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+
+    consumer:
+      clientId: ${spring.application.name}
+      groupId: ${spring.application.name}-group
+      keyDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      valueDeserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+
+    streams:
+      clientId: ${spring.application.name}-stream
+      applicationId: ${spring.application.name}
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+server:
+  port: 0
