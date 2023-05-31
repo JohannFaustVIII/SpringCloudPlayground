@@ -1,5 +1,6 @@
 package joh.faust.stream;
 
+import joh.faust.stream.data.RandomValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,7 +22,9 @@ public class ValueProducer {
     public void produceIntValue() {
         Random random = new Random();
         int value = random.nextInt(1000);
+        int id = random.nextInt(1000000);
+        RandomValue randomValue = new RandomValue(value, id);
         logger.info("Generated value: " + value);
-        publisher.produce(value);
+        publisher.produce(randomValue);
     }
 }
