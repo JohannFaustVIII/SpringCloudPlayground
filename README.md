@@ -11,4 +11,6 @@ My playground to learn Spring Cloud
 - Eighth service - simple service returning a list of integers. Made to work with Ninth service + sending traces to Jaeger via Micrometer.
 - Ninth service - service using OpenFeign to communicate with eighth service + has configured circuit breaker if communication is not possible + integration of OpenFeign with Micrometer to send traces to Jaeger.
 - Tenth service - service sending traces to Jaeger via Micrometer.
+- Eleventh service - service implementing producing, streaming and consuming custom objects via Kafka stream.
+
 [My Notes](NOTES.md)
