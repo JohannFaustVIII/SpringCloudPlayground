@@ -90,7 +90,7 @@ services:
 
   gateway:
     image: gateway-local:latest
-    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Dspring.security.oauth2.client.provider.my-keycloak-provider.issuer-uri=http://keycloak:8080/realms/SRealm -jar app.jar
+    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Dspring.security.oauth2.client.provider.my-keycloak-provider.issuer-uri=http://keycloak:8080/realms/SRealm -Dspring.security.oauth2.client.provider.my-keycloak-provider.authorization-uri=http://localhost:8180/realms/SRealm/protocol/openid-connect/auth -jar app.jar
     expose:
       - 8081
     ports:
