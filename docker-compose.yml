@@ -45,6 +45,7 @@ services:
     volumes:
       - 'pgsql_data:/var/lib/postgresql/data'
   keycloak:
+    hostname: keycloak
     container_name: keycloak
     image: bitnami/keycloak:latest
     environment:
@@ -58,9 +59,9 @@ services:
       KEYCLOAK_DATABASE_PASSWORD: keycloak
     entrypoint: /bin/bash -c
     command:
-      - /opt/bitnami/keycloak/bin/kc.sh import --file=/opt/keycloak/data/import/realm-export.json --override true 2>/dev/null && /opt/bitnami/scripts/keycloak/run.sh --verbose
+      - /opt/bitnami/keycloak/bin/kc.sh import --file=/opt/keycloak/data/import/realm.json --override true 2>/dev/null && /opt/bitnami/scripts/keycloak/run.sh --verbose
     ports:
-      - "8180:8080"
+      - "8080:8080"
     healthcheck:
       test: curl --head -fsS http://localhost:8080
       interval: 60s
@@ -88,9 +89,19 @@ services:
       keycloak:
         condition: service_healthy
 
+  first:
+    image: first-local
+    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Deureka.instance.preferIpAddress=true -Dserver.port=14001 -jar app.jar
+    expose:
+      - 14001
+    ports:
+      - 14001:14001
+    depends_on:
+      - discovery
+
   gateway:
     image: gateway-local:latest
-    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Dspring.security.oauth2.client.provider.my-keycloak-provider.issuer-uri=http://keycloak:8080/realms/SRealm -Dspring.security.oauth2.client.provider.my-keycloak-provider.authorization-uri=http://localhost:8180/realms/SRealm/protocol/openid-connect/auth -jar app.jar
+    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Deureka.instance.preferIpAddress=true -Dspring.security.oauth2.client.provider.my-keycloak-provider.issuer-uri=http://keycloak:8080/realms/SRealm -Dspring.security.oauth2.client.provider.my-keycloak-provider.token-uri=http://keycloak:8080/realms/SRealm/protocol/openid-connect/token -Dspring.security.oauth2.client.provider.my-keycloak-provider.authorization-uri=http://localhost:8080/realms/SRealm/protocol/openid-connect/auth -jar app.jar
     expose:
       - 8081
     ports:
@@ -100,6 +111,8 @@ services:
         condition: service_started
       keycloak:
         condition: service_healthy
+      first:
+        condition: service_started
 
 volumes:
   zookeeper_data:
