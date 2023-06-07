@@ -57,6 +57,7 @@ services:
       KEYCLOAK_DATABASE_NAME: keycloak
       KEYCLOAK_DATABASE_USER: keycloak
       KEYCLOAK_DATABASE_PASSWORD: keycloak
+      KEYCLOAK_EXTRA_ARGS: --hostname-url http://keycloak:8080
     entrypoint: /bin/bash -c
     command:
       - /opt/bitnami/keycloak/bin/kc.sh import --file=/opt/keycloak/data/import/realm.json --override true 2>/dev/null && /opt/bitnami/scripts/keycloak/run.sh --verbose
@@ -101,7 +102,7 @@ services:
 
   gateway:
     image: gateway-local:latest
-    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Deureka.instance.preferIpAddress=true -Dspring.security.oauth2.client.provider.my-keycloak-provider.issuer-uri=http://keycloak:8080/realms/SRealm -Dspring.security.oauth2.client.provider.my-keycloak-provider.token-uri=http://keycloak:8080/realms/SRealm/protocol/openid-connect/token -Dspring.security.oauth2.client.provider.my-keycloak-provider.authorization-uri=http://localhost:8080/realms/SRealm/protocol/openid-connect/auth -jar app.jar
+    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Deureka.instance.preferIpAddress=true -Dspring.security.oauth2.client.provider.my-keycloak-provider.issuer-uri=http://keycloak:8080/realms/SRealm -Dspring.security.oauth2.client.provider.my-keycloak-provider.authorization-uri=http://localhost:8080/realms/SRealm/protocol/openid-connect/auth -jar app.jar
     expose:
       - 8081
     ports:
