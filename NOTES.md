@@ -6,6 +6,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
 
  - [Why to use @RefreshScope during update of configuration?](#why-to-use-refreshscope-during-update-of-configuration)
  - [How does Circuit Breaker pattern work?](#how-does-circuit-breaker-pattern-work)
+ - [How to solve problem with Keycloak hostname in docker?](#how-to-solve-problem-with-keycloak-hostname-in-docker)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -75,3 +76,11 @@ to OPEN state.
 
 For `TimeLimiterConfig`:
 - timeoutDuration - defines how long a circuit breaker has to wait for a response before marking the attempt as timeout. 
+
+## How to solve problem with Keycloak hostname in Docker?
+
+First, keycloak can have injected hostname via `--hostname` option (and the whole family of options behind it). That way
+Keycloak will know what issuer it has to use, but it will start to redirect rest of calls to provided hostname. That causes
+that hostname resolved by Docker's DNS can be not used by calling endpoint via browser, because it is going to redirect to
+url with Docker's name, which can't be resolved by a browser. To solve that, hostname can be added to `/etc/hosts` (for Linux) 
+and that will tell browser to redirect Docker's hostname to localhost, and then via a proper port.
