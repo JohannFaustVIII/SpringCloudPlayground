@@ -57,7 +57,7 @@ services:
       KEYCLOAK_DATABASE_NAME: keycloak
       KEYCLOAK_DATABASE_USER: keycloak
       KEYCLOAK_DATABASE_PASSWORD: keycloak
-      KEYCLOAK_EXTRA_ARGS: --hostname-url http://keycloak:8080
+      KEYCLOAK_EXTRA_ARGS: --hostname keycloak
     entrypoint: /bin/bash -c
     command:
       - /opt/bitnami/keycloak/bin/kc.sh import --file=/opt/keycloak/data/import/realm.json --override true 2>/dev/null && /opt/bitnami/scripts/keycloak/run.sh --verbose
