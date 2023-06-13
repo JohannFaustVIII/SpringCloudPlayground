@@ -5,6 +5,8 @@ eureka:
   client:
     fetchRegistry: false
     registerWithEureka: false
+    serviceUrl:
+      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
 
 spring:
   security:

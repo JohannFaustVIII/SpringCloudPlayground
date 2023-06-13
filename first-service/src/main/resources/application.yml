@@ -1,9 +1,10 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+      defaultZone: ${EUREKA_URL:http://admin:examplePassword@localhost:18091/eureka/}
   instance:
     instanceId: ${random.value}
+    preferIpAddress: true
 
 
 spring:
@@ -11,4 +12,4 @@ spring:
     name: 1-first-service
 
 server:
-  port: 0
+  port: ${SERVICE_PORT:0}

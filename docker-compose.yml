@@ -92,7 +92,9 @@ services:
 
   first:
     image: first-local
-    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Deureka.instance.preferIpAddress=true -Dserver.port=14001 -jar app.jar
+    environment:
+      SERVICE_PORT: 14001
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
     expose:
       - 14001
     ports:
@@ -102,7 +104,10 @@ services:
 
   gateway:
     image: gateway-local:latest
-    entrypoint: java -Deureka.client.serviceUrl.defaultZone=http://admin:examplePassword@discovery:18091/eureka/ -Deureka.instance.preferIpAddress=true -Dspring.security.oauth2.client.provider.my-keycloak-provider.issuer-uri=http://keycloak:8080/realms/SRealm -Dspring.security.oauth2.client.provider.my-keycloak-provider.authorization-uri=http://localhost:8080/realms/SRealm/protocol/openid-connect/auth -jar app.jar
+    environment:
+      SERVICE_PORT: 8081
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+      KEYCLOAK_URL: http://keycloak:8080/realms/SRealm
     expose:
       - 8081
     ports:

@@ -1,10 +1,12 @@
 server:
-  port: 8081
+  port: ${SERVICE_PORT:8081}
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+      defaultZone: ${EUREKA_URL:http://admin:examplePassword@localhost:18091/eureka/}
+  instance:
+    preferIpAddress: true
 
 spring:
   application:
@@ -14,12 +16,12 @@ spring:
       client:
         provider:
           my-keycloak-provider:
-            issuer-uri: http://localhost:8180/realms/SRealm
+            issuer-uri: ${KEYCLOAK_URL:http://localhost:8180/realms/SRealm}
         registration:
           keycloak-client:
             provider: my-keycloak-provider
-            client-id: gateway-client
-            client-secret: XuP788Es8CYur4FGG84hf5PfEnnaMZR8
+            client-id: ${KEYCLOAK_CLIENT_ID:gateway-client}
+            client-secret: ${KEYCLOAK_CLIENT_SECRET:XuP788Es8CYur4FGG84hf5PfEnnaMZR8}
             authorization-grant-type: authorization_code
             redirect-uri: '{baseUrl}/login/oauth2/code/keycloak'
             scope: openid
