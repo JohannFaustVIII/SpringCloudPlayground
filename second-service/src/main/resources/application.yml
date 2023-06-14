@@ -2,7 +2,7 @@ spring:
   application:
     name: 2-second-service
   config:
-    import: configserver:http://localhost:8012
+    import: configserver:${CONFIG_SERVER_URL:http://localhost:8012}
   cloud:
     bus:
       enabled: true
@@ -14,10 +14,10 @@ spring:
     config:
       failFast: true
   kafka:
-    bootstrapServers: localhost:29092
+    bootstrapServers: ${KAFKA_HOSTNAME:localhost}:${KAFKA_PORT:29092}
 
 server:
-  port: 0
+  port: ${SERVICE_PORT:0}
 
 management:
   endpoints:

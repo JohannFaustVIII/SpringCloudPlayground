@@ -115,6 +115,19 @@ services:
     depends_on:
       - discovery
 
+  second:
+    image: second-local
+    environment:
+      SERVICE_PORT: 14002
+      KAFKA_HOSTNAME: kafka
+      KAFKA_PORT: 29092
+      CONFIG_SERVER_URL: http://configuration-server:8012
+    expose:
+      - 14002
+    depends_on:
+      - discovery
+      - configuration-server
+
   gateway:
     image: gateway-local:latest
     environment:
@@ -131,6 +144,8 @@ services:
       keycloak:
         condition: service_healthy
       first:
+        condition: service_started
+      second:
         condition: service_started
 
 volumes:
