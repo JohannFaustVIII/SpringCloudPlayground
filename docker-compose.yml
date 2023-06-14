@@ -31,7 +31,7 @@ services:
       - KAFKA_ENABLE_KRAFT=no
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - KAFKA_CFG_LISTENERS=PLAINTEXT://:29092
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://localhost:29092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:29092
     depends_on:
       - zookeeper
 
@@ -89,6 +89,19 @@ services:
         condition: service_started
       keycloak:
         condition: service_healthy
+
+  configuration-server:
+    image: configuration-server-local:latest
+    environment:
+      SERVICE_PORT: 8012
+      KAFKA_HOSTNAME: kafka
+      KAFKA_PORT: 29092
+      GIT_URI: https://github.com/JohannFaustVIII/SCPConfiguration
+      DEFAULT_LABEL: docker
+    expose:
+      - 8012
+    depends_on:
+      - kafka
 
   first:
     image: first-local

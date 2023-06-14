@@ -5,12 +5,13 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/JohannFaustVIII/SCPConfiguration
+          uri: ${GIT_URI:https://github.com/JohannFaustVIII/SCPConfiguration}
           cloneOnStart: true
+          defaultLabel: ${DEFAULT_LABEL:main}
     bus:
       enabled: true
   kafka:
-    bootstrapServers: localhost:29092
+    bootstrapServers: ${KAFKA_HOSTNAME:localhost}:${KAFKA_PORT:29092}
 
 server:
-  port: 8012
+  port: ${SERVICE_PORT:8012}
