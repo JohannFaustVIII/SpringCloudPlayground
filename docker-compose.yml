@@ -128,6 +128,102 @@ services:
       - discovery
       - configuration-server
 
+  third:
+    image: third-local
+    environment:
+      SERVICE_PORT: 14003
+      INSTANCE_HOSTNAME: third
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+    expose:
+      - 14003
+    depends_on:
+      - discovery
+
+  fourth:
+    image: fourth-local
+    environment:
+      SERVICE_PORT: 14004
+      KAFKA_HOSTNAME: kafka
+      KAFKA_PORT: 29092
+      CONFIG_SERVER_URL: http://configuration-server:8012
+    expose:
+      - 14004
+    depends_on:
+      - discovery
+      - configuration-server
+
+  fifth:
+    image: fifth-local
+    environment:
+      SERVICE_PORT: 14005
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+      SIX_SERVICE_URL: http://sixth:14006
+    expose:
+      - 14005
+    depends_on:
+      - discovery
+      - sixth
+
+  sixth:
+    image: sixth-local
+    environment:
+      SERVICE_PORT: 14006
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+    expose:
+      - 14006
+    depends_on:
+      - discovery
+
+
+  seventh:
+    image: seventh-local
+    environment:
+      SERVICE_PORT: 14007
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+      JWK_URI: http://keycloak:8080/realms/SRealm/protocol/openid-connect/certs
+    expose:
+      - 14007
+    depends_on:
+      - discovery
+      - keycloak
+
+  eighth:
+    image: eighth-local
+    environment:
+      SERVICE_PORT: 14008
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+      JAEGER_ENDPOINT: http://jaeger:4318/v1/traces
+    expose:
+      - 14008
+    depends_on:
+      - discovery
+      - jaeger
+
+  ninth:
+    image: ninth-local
+    environment:
+      SERVICE_PORT: 14009
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+      JAEGER_ENDPOINT: http://jaeger:4318/v1/traces
+    expose:
+      - 14009
+    depends_on:
+      - discovery
+      - eighth
+      - jaeger
+
+  tenth:
+    image: tenth-local
+    environment:
+      SERVICE_PORT: 14010
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+      JAEGER_ENDPOINT: http://jaeger:4318/v1/traces
+    expose:
+      - 14010
+    depends_on:
+      - discovery
+      - jaeger
+
   gateway:
     image: gateway-local:latest
     environment:
@@ -146,6 +242,14 @@ services:
       first:
         condition: service_started
       second:
+        condition: service_started
+      third:
+        condition: service_started
+      fourth:
+        condition: service_started
+      fifth:
+        condition: service_started
+      sixth:
         condition: service_started
 
 volumes:

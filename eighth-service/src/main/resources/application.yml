@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+      defaultZone: ${EUREKA_URL:http://admin:examplePassword@localhost:18091/eureka/}
 
 
 management:
@@ -11,7 +11,7 @@ management:
         include: '*'
   otlp:
     tracing:
-      endpoint: http://localhost:4318/v1/traces
+      endpoint: ${JAEGER_ENDPOINT:http://localhost:4318/v1/traces}
   tracing:
     enabled: true
     sampling:
@@ -26,4 +26,4 @@ spring:
     name: 8-eighth-service
 
 server:
-  port: 0
+  port: ${SERVICE_PORT:0}

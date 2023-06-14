@@ -1,11 +1,14 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://admin:examplePassword@localhost:18091/eureka/
+      defaultZone: ${EUREKA_URL:http://admin:examplePassword@localhost:18091/eureka/}
 
 spring:
   application:
     name: 5-fifth-service
 
 server:
-  port: 0
+  port: ${SERVICE_PORT:0}
+
+sixService:
+  url: ${SIX_SERVICE_URL:http://localhost:8081/sixth}
