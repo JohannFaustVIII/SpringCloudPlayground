@@ -251,6 +251,14 @@ services:
         condition: service_started
       sixth:
         condition: service_started
+      seventh:
+        condition: service_started
+      eighth:
+        condition: service_started
+      ninth:
+        condition: service_started
+      tenth:
+        condition: service_started
 
 volumes:
   zookeeper_data:
