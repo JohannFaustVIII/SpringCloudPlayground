@@ -11,4 +11,4 @@ server:
   port: ${SERVICE_PORT:0}
 
 sixService:
-  url: ${SIX_SERVICE_URL:http://localhost:8081/sixth}
+  name: ${SIX_SERVICE_NAME:6-sixth-service}

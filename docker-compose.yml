@@ -157,7 +157,7 @@ services:
     environment:
       SERVICE_PORT: 14005
       EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
-      SIX_SERVICE_URL: http://sixth:14006
+      SIX_SERVICE_NAME: 6-sixth-service
     expose:
       - 14005
     depends_on:
