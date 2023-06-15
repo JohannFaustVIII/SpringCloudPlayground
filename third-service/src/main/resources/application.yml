@@ -6,6 +6,7 @@ eureka:
     hostname: ${INSTANCE_HOSTNAME:localhost}
     healthCheckUrl: http://${eureka.instance.hostname}:${management.server.port}/actuator/health
     statusPageUrl: http://${eureka.instance.hostname}:${management.server.port}/actuator/info
+    preferIpAddress: true
 
 spring:
   application:

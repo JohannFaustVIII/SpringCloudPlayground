@@ -16,6 +16,10 @@ spring:
   kafka:
     bootstrapServers: ${KAFKA_HOSTNAME:localhost}:${KAFKA_PORT:29092}
 
+eureka:
+  instance:
+    preferIpAddress: true
+
 server:
   port: ${SERVICE_PORT:0}
 

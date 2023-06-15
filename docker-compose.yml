@@ -110,8 +110,6 @@ services:
       EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
     expose:
       - 14001
-    ports:
-      - 14001:14001
     depends_on:
       - discovery
 
