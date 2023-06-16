@@ -11,6 +11,7 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity httpSecurity) {
         httpSecurity.authorizeExchange()
+                .pathMatchers("/discovery/**", "/eureka/**").permitAll()
                 .anyExchange()
                 .authenticated()
                 .and()

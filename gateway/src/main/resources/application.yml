@@ -28,6 +28,16 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: eureka
+          uri: ${EUREKA_ROUTE_URL:http://localhost:18091}
+          predicates:
+            - Path=/discovery/**
+          filters:
+            - RewritePath=/discovery(?<remaining>/?.*), /$\{remaining}
+        - id: eureka_resources
+          uri: ${EUREKA_ROUTE_URL:http://localhost:18091}
+          predicates:
+            - Path=/eureka/**
         - id: firstService
           uri: lb://1-first-service
           predicates:

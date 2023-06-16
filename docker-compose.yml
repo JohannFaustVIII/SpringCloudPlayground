@@ -80,8 +80,6 @@ services:
     image: discovery-local:latest
     expose:
       - 18091
-    ports:
-      - 18091:18091
     depends_on:
       jaeger:
         condition: service_started
@@ -228,6 +226,7 @@ services:
       SERVICE_PORT: 8081
       EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
       KEYCLOAK_URL: http://keycloak:8080/realms/SRealm
+      EUREKA_ROUTE_URL: http://discovery:18091/
     expose:
       - 8081
     ports:
