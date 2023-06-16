@@ -7,6 +7,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [Why to use @RefreshScope during update of configuration?](#why-to-use-refreshscope-during-update-of-configuration)
  - [How does Circuit Breaker pattern work?](#how-does-circuit-breaker-pattern-work)
  - [How to solve problem with Keycloak hostname in docker?](#how-to-solve-problem-with-keycloak-hostname-in-docker)
+ - [What is MIME Sniffing?](#what-is-mime-sniffing)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -84,3 +85,14 @@ Keycloak will know what issuer it has to use, but it will start to redirect rest
 that hostname resolved by Docker's DNS can be not used by calling endpoint via browser, because it is going to redirect to
 url with Docker's name, which can't be resolved by a browser. To solve that, hostname can be added to `/etc/hosts` (for Linux) 
 and that will tell browser to redirect Docker's hostname to localhost, and then via a proper port.
+
+## What is MIME Sniffing?
+
+Most, if not all, browsers have it. If a server returns a response without set `Content-Type` header, a browser don't know
+what type is in the response's body and how to handle it. That was causing crashing and errors on the browser side. To
+prevent that, browser got implemented MIME Sniffing, which lets to analyze a response's body to determine a proper MIME
+type and to handle it without any problem. Makes life easier. And RISKIER. Why? Because if unchecked resource is put on
+a server and is requested by a browser, it can be taken and handled without any problem. And that resource can be a harmful
+script. To prevent a situation like that, and to tell a browser that "It's okay to fail with that" is to set 
+`X-Content-Type-Options` response's header to `nosniff` value. That will tell a browser to don't try MIME sniffing to handle
+a resource, but just fail, which is safer.
