@@ -99,3 +99,9 @@ spring:
             - Path=/tenth/**
           filters:
             - StripPrefix=1
+        - id: twelfthService
+          uri: lb://12-twelfth-service
+          predicates:
+            - Path=/twelfth/**
+          filters:
+            - StripPrefix=1

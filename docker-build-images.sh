@@ -1,6 +1,6 @@
 #!/bin/bash
 
-services=("first" "second" "third" "fourth" "fifth" "sixth" "seventh" "eighth" "ninth" "tenth" "eleventh")
+services=("first" "second" "third" "fourth" "fifth" "sixth" "seventh" "eighth" "ninth" "tenth" "eleventh" "twelfth")
 others=("configuration-server" "discovery" "gateway")
 
 for d in ${services[*]};

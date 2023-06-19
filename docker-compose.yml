@@ -220,6 +220,16 @@ services:
       - discovery
       - jaeger
 
+  twelfth:
+    image: twelfth-local
+    environment:
+      SERVICE_PORT: 14012
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+    expose:
+      - 14012
+    depends_on:
+      - discovery
+
   gateway:
     image: gateway-local:latest
     environment:
@@ -255,6 +265,8 @@ services:
       ninth:
         condition: service_started
       tenth:
+        condition: service_started
+      twelfth:
         condition: service_started
 
 volumes:

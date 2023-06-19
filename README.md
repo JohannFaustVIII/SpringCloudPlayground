@@ -12,5 +12,6 @@ My playground to learn Spring Cloud
 - Ninth service - service using OpenFeign to communicate with eighth service + has configured circuit breaker if communication is not possible + integration of OpenFeign with Micrometer to send traces to Jaeger.
 - Tenth service - service sending traces to Jaeger via Micrometer.
 - Eleventh service - service implementing producing, streaming and consuming custom objects via Kafka stream.
+- Twelfth service - service using Spring Cache.
 
 [My Notes](NOTES.md)
