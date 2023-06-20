@@ -76,6 +76,12 @@ services:
         source: ./keycloak/realms
         target: /opt/keycloak/data/import
 
+  redis:
+    image: redis:latest
+    expose:
+      - 6379
+
+
   discovery:
     image: discovery-local:latest
     expose:
@@ -225,10 +231,13 @@ services:
     environment:
       SERVICE_PORT: 14012
       EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     expose:
       - 14012
     depends_on:
       - discovery
+      - redis
 
   gateway:
     image: gateway-local:latest
