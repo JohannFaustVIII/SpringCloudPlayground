@@ -5,14 +5,16 @@ eureka:
   instance:
     preferIpAddress: true
 
-
 spring:
   application:
     name: 12-twelfth-service
-  redis:
-    host: ${REDIS_HOST:localhost}
-    port: ${REDIS_PORT:6379}
+  data:
+    redis:
+      database: 0
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
   cache:
+    type: redis
     redis:
       time-to-live: 5000
       cache-null-values: false

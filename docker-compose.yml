@@ -80,6 +80,14 @@ services:
     image: redis:latest
     expose:
       - 6379
+    volumes:
+      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 1s
+      timeout: 2s
+      retries: 20
 
 
   discovery:
@@ -235,9 +243,13 @@ services:
       REDIS_PORT: 6379
     expose:
       - 14012
-    depends_on:
-      - discovery
+    links:
       - redis
+    depends_on:
+      discovery:
+        condition: service_started
+      redis:
+        condition: service_healthy
 
   gateway:
     image: gateway-local:latest
