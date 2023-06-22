@@ -251,6 +251,16 @@ services:
       redis:
         condition: service_healthy
 
+  thirteenth:
+    image: thirteenth-local
+    environment:
+      SERVICE_PORT: 14013
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+    expose:
+      - 14013
+    depends_on:
+      - discovery
+
   gateway:
     image: gateway-local:latest
     environment:
@@ -288,6 +298,8 @@ services:
       tenth:
         condition: service_started
       twelfth:
+        condition: service_started
+      thirteenth:
         condition: service_started
 
 volumes:
