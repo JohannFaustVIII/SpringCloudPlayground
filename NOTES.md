@@ -8,6 +8,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [How does Circuit Breaker pattern work?](#how-does-circuit-breaker-pattern-work)
  - [How to solve problem with Keycloak hostname in docker?](#how-to-solve-problem-with-keycloak-hostname-in-docker)
  - [What is MIME Sniffing?](#what-is-mime-sniffing)
+ - [What is a difference between @Cacheable, @CachePut and @CacheEvict?](#what-is-a-difference-between-cacheable-cacheput-and-cacheevict)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -96,3 +97,15 @@ a server and is requested by a browser, it can be taken and handled without any 
 script. To prevent a situation like that, and to tell a browser that "It's okay to fail with that" is to set 
 `X-Content-Type-Options` response's header to `nosniff` value. That will tell a browser to don't try MIME sniffing to handle
 a resource, but just fail, which is safer.
+
+## What is a difference between @Cacheable, @CachePut and @CacheEvict?
+
+Worth mentioning: below annotation works as a proxy, so will be respected if a method is called outside a class, but not
+from inside (and to be more precise, it wraps object into a proxy layer, which is skipped when call is made from inside).
+
+- `@Cacheable` - the annotation tells "the result of this method can be cached", so if a result of the method is not cached,
+then the method is executed. Otherwise, the result is read from a cache and method is not executed. 
+- `@CachePut` - the annotation tells "this method updates resource and result has to be cached", so the method is always 
+executed (no matter if result is cached or not) and caches its result.
+- `@CacheEvict` - the annotation tells "this method remove from a resource and has to remove from cache", so the method is
+always executed and cached objects (if exist) are removed (based on a key, cache name etc.).
