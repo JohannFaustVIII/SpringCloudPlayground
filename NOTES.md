@@ -109,3 +109,16 @@ then the method is executed. Otherwise, the result is read from a cache and meth
 executed (no matter if result is cached or not) and caches its result.
 - `@CacheEvict` - the annotation tells "this method remove from a resource and has to remove from cache", so the method is
 always executed and cached objects (if exist) are removed (based on a key, cache name etc.).
+
+## How multiple cache names work for the same method?
+
+Based on local testing.
+
+For `@Cacheable`, it looks like it checks each cache name for a value. If the value exists, it is returned, otherwise,
+check next cache name. If none of cache names contain a result, the annotated method is executed, and the result is put 
+in all declared cache names.
+
+Sooo... If there are two cache names, and method is executed - the result is put in all of them. If the method is called
+again, the result will be returned from the first cache name. If the second cache name is updated, but the value is in 
+the first one, the first cache name's value is going to be returned. Only evict of the first cache name will cause to read 
+value from the second cache name.
