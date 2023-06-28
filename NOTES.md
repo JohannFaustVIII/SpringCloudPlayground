@@ -122,3 +122,7 @@ Sooo... If there are two cache names, and method is executed - the result is put
 again, the result will be returned from the first cache name. If the second cache name is updated, but the value is in 
 the first one, the first cache name's value is going to be returned. Only evict of the first cache name will cause to read 
 value from the second cache name.
+
+If cache names are declared in `CacheConfig` for a class, and in `Cacheable`/`CachePut`/`CacheEvict` for a method, then
+only cache names declared directly for the method (in `Cacheable`/`CachePut`/`CacheEvict` ) are used (cache names in
+`CacheConfig` are ignored, unless they are declared in `Cacheable`/`CachePut`/`CacheEvict` annotation for the method).

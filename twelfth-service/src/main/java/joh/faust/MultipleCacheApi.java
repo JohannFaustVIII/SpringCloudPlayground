@@ -11,8 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
+@CacheConfig(cacheNames = {"cache_0"})
 @RequestMapping("/multiple")
 public class MultipleCacheApi {
+
+    @Cacheable
+    @GetMapping("/zero")
+    public String getZero() {
+        return "Twelfth Service: Multiple Cache! Call time: " + LocalDateTime.now() + " CACHEABLE ZERO";
+    }
 
     @Cacheable(cacheNames = {"cache_1", "cache_2"})
     @GetMapping("/")
