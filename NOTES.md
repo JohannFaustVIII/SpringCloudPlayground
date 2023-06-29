@@ -126,3 +126,21 @@ value from the second cache name.
 If cache names are declared in `CacheConfig` for a class, and in `Cacheable`/`CachePut`/`CacheEvict` for a method, then
 only cache names declared directly for the method (in `Cacheable`/`CachePut`/`CacheEvict` ) are used (cache names in
 `CacheConfig` are ignored, unless they are declared in `Cacheable`/`CachePut`/`CacheEvict` annotation for the method).
+
+## How to define multiple caching annotations for a method?
+
+Multiple `@Cacheable` can be desired for a situation like (it is just an example), when for one of cache names we want
+ to put always result, and to another only when given condition is met. In such case, it can't be defined in a single 
+annotation, so two has to be used. The problem is that the same annotation can't be used multiple times for a method. 
+Solution is usage of `@Caching` annotation, which lets to use multiple `@Cacheable` (or other annotations) to be declared 
+inside. An example of usage can be used online.
+
+```java
+@Caching(evict = {
+  @Cacheable(“address”), 
+  @Cacheable(value=“employees”, condition=”#result.length > 100”)
+})
+public Employee getEmployee(String name) {
+  // some code
+}
+```
