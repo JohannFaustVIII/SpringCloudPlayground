@@ -9,6 +9,8 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [How to solve problem with Keycloak hostname in docker?](#how-to-solve-problem-with-keycloak-hostname-in-docker)
  - [What is MIME Sniffing?](#what-is-mime-sniffing)
  - [What is a difference between @Cacheable, @CachePut and @CacheEvict?](#what-is-a-difference-between-cacheable-cacheput-and-cacheevict)
+ - [How multiple cache names work for the same method?](#how-multiple-cache-names-work-for-the-same-method)
+ - [How to define multiple caching annotations for a method?](#how-to-define-multiple-caching-annotations-for-a-method)
 
 ## Why to use @RefreshScope during update of configuration?
 
