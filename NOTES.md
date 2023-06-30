@@ -11,6 +11,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is a difference between @Cacheable, @CachePut and @CacheEvict?](#what-is-a-difference-between-cacheable-cacheput-and-cacheevict)
  - [How multiple cache names work for the same method?](#how-multiple-cache-names-work-for-the-same-method)
  - [How to define multiple caching annotations for a method?](#how-to-define-multiple-caching-annotations-for-a-method)
+ - [What is Liquibase?](#what-is-liquibase)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -146,3 +147,12 @@ public Employee getEmployee(String name) {
   // some code
 }
 ```
+
+## What is Liquibase?
+
+Liquibase is a GIT, but for a database - it is a tool to control version of a database and monitor what was added/updated/removed.
+By using it, we can observe what, when and by whom was changed in a database. Why is it good? Because it takes responsibility 
+from JPA to manipulate database (and it should never be done! The only proper value of `spring.jpa.hibernate.ddlAuto` is 
+`validate` to check if fields and tables matches etc.). And it helps to make proper migration of a database on production.
+And to add example data to a database for development, but without pushing that to production, because of using different
+profiles. And can set proper rollback rule if migration fails.
