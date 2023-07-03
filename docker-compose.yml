@@ -125,6 +125,16 @@ services:
     depends_on:
       - discovery
 
+  first-2:
+    image: first-local
+    environment:
+      SERVICE_PORT: 14001
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+    expose:
+      - 14001
+    depends_on:
+      - discovery
+
   second:
     image: second-local
     environment:
@@ -278,6 +288,8 @@ services:
       keycloak:
         condition: service_healthy
       first:
+        condition: service_started
+      first-2:
         condition: service_started
       second:
         condition: service_started
