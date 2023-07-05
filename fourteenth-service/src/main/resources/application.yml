@@ -1,0 +1,20 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://admin:examplePassword@localhost:18091/eureka/}
+  instance:
+    preferIpAddress: true
+
+
+spring:
+  application:
+    name: 14-fourteenth-service
+  datasource:
+    url: jdbc:h2:file:./fourteenth-database
+  jpa:
+    hibernate:
+      ddlAuto: validate
+
+
+server:
+  port: ${SERVICE_PORT:0}
