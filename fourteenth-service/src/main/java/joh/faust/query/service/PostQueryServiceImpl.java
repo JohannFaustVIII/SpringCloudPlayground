@@ -5,12 +5,14 @@ import joh.faust.query.model.PostById;
 import joh.faust.query.model.PostByName;
 import joh.faust.query.repository.PostReadRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
+@Component
 public class PostQueryServiceImpl implements PostQueryService {
 
     private final PostReadRepository repository;

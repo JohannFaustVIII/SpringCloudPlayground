@@ -7,10 +7,12 @@ import joh.faust.command.model.UpdatePostContent;
 import joh.faust.command.model.UpdatePostName;
 import joh.faust.command.repository.PostWriteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Component
 public class PostCommandServiceImpl implements PostCommandService {
 
     private final PostWriteRepository repository;
@@ -35,7 +37,7 @@ public class PostCommandServiceImpl implements PostCommandService {
     public void updatePostContent(UpdatePostContent command) {
         Optional<Post> post = repository.findById(command.getId());
         Post updatedPost = post.map(p -> {
-            p.setName(command.getContent());
+            p.setContent(command.getContent());
             return p;
         }).orElseThrow();
         repository.save(updatedPost);

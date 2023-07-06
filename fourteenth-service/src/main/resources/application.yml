@@ -13,7 +13,7 @@ spring:
     url: jdbc:h2:file:./fourteenth-database
   jpa:
     hibernate:
-      ddlAuto: validate
+      ddlAuto: create-only
 
 
 server:

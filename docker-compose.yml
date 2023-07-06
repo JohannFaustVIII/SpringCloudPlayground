@@ -271,6 +271,16 @@ services:
     depends_on:
       - discovery
 
+  fourteenth:
+    image: fourteenth-local
+    environment:
+      SERVICE_PORT: 14014
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+    expose:
+      - 14014
+    depends_on:
+      - discovery
+
   gateway:
     image: gateway-local:latest
     environment:
@@ -312,6 +322,8 @@ services:
       twelfth:
         condition: service_started
       thirteenth:
+        condition: service_started
+      fourteenth:
         condition: service_started
 
 volumes:
