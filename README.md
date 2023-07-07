@@ -14,5 +14,6 @@ My playground to learn Spring Cloud
 - Eleventh service - service implementing producing, streaming and consuming custom objects via Kafka stream.
 - Twelfth service - service using Spring Cache.
 - Thirteenth - service using Liquibase to version H2 database, with two different profiles: dev and prod.
+- Fourteenth - service implementing an idea of CQRS.
 
 [My Notes](NOTES.md)
