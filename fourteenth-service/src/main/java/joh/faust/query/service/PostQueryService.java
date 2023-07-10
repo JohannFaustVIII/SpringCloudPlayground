@@ -1,6 +1,6 @@
 package joh.faust.query.service;
 
-import joh.faust.Post;
+import joh.faust.model.Post;
 import joh.faust.query.model.PostById;
 import joh.faust.query.model.PostByName;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,6 @@
-package joh.faust;
+package joh.faust.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Post {
@@ -16,12 +13,16 @@ public class Post {
 
     private String content;
 
+    @ManyToOne
+    private User user;
+
     public Post() {
     }
 
-    public Post(String name, String content) {
+    public Post(String name, String content, User user) {
         this.name = name;
         this.content = content;
+        this.user = user;
     }
 
     public Long getId() {
@@ -46,5 +47,13 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

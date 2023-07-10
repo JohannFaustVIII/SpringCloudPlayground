@@ -1,4 +1,4 @@
-package joh.faust.command.model;
+package joh.faust.command.model.post;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdatePostContent {
+public class UpdatePostName {
 
     private Long id;
 
-    private String content;
+    private String name;
 }

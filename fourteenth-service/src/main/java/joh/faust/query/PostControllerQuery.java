@@ -1,6 +1,6 @@
 package joh.faust.query;
 
-import joh.faust.Post;
+import joh.faust.model.Post;
 import joh.faust.query.model.PostById;
 import joh.faust.query.model.PostByName;
 import joh.faust.query.service.PostQueryService;

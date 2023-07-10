@@ -1,9 +1,9 @@
 package joh.faust.command;
 
-import joh.faust.command.model.CreatePost;
-import joh.faust.command.model.DeletePost;
-import joh.faust.command.model.UpdatePostContent;
-import joh.faust.command.model.UpdatePostName;
+import joh.faust.command.model.post.CreatePost;
+import joh.faust.command.model.post.DeletePost;
+import joh.faust.command.model.post.UpdatePostContent;
+import joh.faust.command.model.post.UpdatePostName;
 import joh.faust.command.service.PostCommandService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

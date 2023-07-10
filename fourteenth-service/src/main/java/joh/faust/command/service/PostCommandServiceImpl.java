@@ -1,11 +1,13 @@
 package joh.faust.command.service;
 
-import joh.faust.Post;
-import joh.faust.command.model.CreatePost;
-import joh.faust.command.model.DeletePost;
-import joh.faust.command.model.UpdatePostContent;
-import joh.faust.command.model.UpdatePostName;
+import joh.faust.command.repository.UserRepository;
+import joh.faust.model.Post;
+import joh.faust.command.model.post.CreatePost;
+import joh.faust.command.model.post.DeletePost;
+import joh.faust.command.model.post.UpdatePostContent;
+import joh.faust.command.model.post.UpdatePostName;
 import joh.faust.command.repository.PostWriteRepository;
+import joh.faust.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +19,12 @@ public class PostCommandServiceImpl implements PostCommandService {
 
     private final PostWriteRepository repository;
 
+    private final UserRepository userRepository;
+
     @Override
     public void createPost(CreatePost command) {
-        Post post = new Post(command.getName(), command.getContent());
+        User user = userRepository.findById(command.getCreatorId()).orElseThrow();
+        Post post = new Post(command.getName(), command.getContent(), user);
         repository.save(post);
     }
 

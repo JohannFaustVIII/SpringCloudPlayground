@@ -1,9 +1,9 @@
 package joh.faust.command.repository;
 
-import joh.faust.model.Post;
+import joh.faust.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PostWriteRepository extends CrudRepository<Post, Long> {
+public interface UserRepository extends CrudRepository<User, Long> {
 }
