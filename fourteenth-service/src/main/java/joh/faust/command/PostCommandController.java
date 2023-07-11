@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/post")
-public class PostControllerCommand {
+@RequestMapping("/posts")
+public class PostCommandController {
 
     private final PostCommandService postService;
 

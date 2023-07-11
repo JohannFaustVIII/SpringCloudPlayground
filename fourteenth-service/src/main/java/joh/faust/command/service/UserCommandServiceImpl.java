@@ -1,7 +1,7 @@
 package joh.faust.command.service;
 
 import joh.faust.command.model.user.CreateUser;
-import joh.faust.command.repository.UserRepository;
+import joh.faust.command.repository.UserWriteRepository;
 import joh.faust.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserCommandServiceImpl implements UserCommandService {
 
-    private final UserRepository repository;
+    private final UserWriteRepository repository;
 
     @Override
     public void createUser(CreateUser command) {

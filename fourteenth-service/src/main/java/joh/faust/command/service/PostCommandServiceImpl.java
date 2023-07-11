@@ -1,6 +1,6 @@
 package joh.faust.command.service;
 
-import joh.faust.command.repository.UserRepository;
+import joh.faust.command.repository.UserWriteRepository;
 import joh.faust.model.Post;
 import joh.faust.command.model.post.CreatePost;
 import joh.faust.command.model.post.DeletePost;
@@ -19,7 +19,7 @@ public class PostCommandServiceImpl implements PostCommandService {
 
     private final PostWriteRepository repository;
 
-    private final UserRepository userRepository;
+    private final UserWriteRepository userRepository;
 
     @Override
     public void createPost(CreatePost command) {

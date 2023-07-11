@@ -1,0 +1,9 @@
+package joh.faust.command.repository;
+
+import joh.faust.model.User;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserWriteRepository extends CrudRepository<User, Long> {
+}
