@@ -1,6 +1,6 @@
 package joh.faust.command.repository;
 
-import joh.faust.model.Post;
+import joh.faust.entity.Post;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

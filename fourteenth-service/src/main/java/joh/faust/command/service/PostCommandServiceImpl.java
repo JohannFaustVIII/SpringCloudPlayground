@@ -1,13 +1,13 @@
 package joh.faust.command.service;
 
 import joh.faust.command.repository.UserWriteRepository;
-import joh.faust.model.Post;
+import joh.faust.entity.Post;
 import joh.faust.command.model.post.CreatePost;
 import joh.faust.command.model.post.DeletePost;
 import joh.faust.command.model.post.UpdatePostContent;
 import joh.faust.command.model.post.UpdatePostName;
 import joh.faust.command.repository.PostWriteRepository;
-import joh.faust.model.User;
+import joh.faust.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

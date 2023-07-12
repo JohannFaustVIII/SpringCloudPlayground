@@ -2,7 +2,7 @@ package joh.faust.command.service;
 
 import joh.faust.command.model.user.CreateUser;
 import joh.faust.command.repository.UserWriteRepository;
-import joh.faust.model.User;
+import joh.faust.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

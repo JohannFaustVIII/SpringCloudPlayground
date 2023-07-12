@@ -21,16 +21,23 @@ public class PostQueryServiceImpl implements PostQueryService {
     public List<Post> findAll() {
         return StreamSupport
                 .stream(repository.findAll().spliterator(), false)
+                .map(joh.faust.model.Post::fromEntity)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Post findPostById(PostById query) {
-        return repository.findById(query.getId()).orElseThrow(); // TODO: ADD EXCEPTION FOR THIS?
+        return repository
+                .findById(query.getId())
+                .map(Post::fromEntity)
+                .orElseThrow(); // TODO: ADD EXCEPTION FOR THIS?
     }
 
     @Override
     public Post findPostByName(PostByName query) {
-        return repository.findByName(query.getName()).orElseThrow();// TODO: ADD EXCEPTION FOR THIS?
+        return repository
+                .findByName(query.getName())
+                .map(Post::fromEntity)
+                .orElseThrow();// TODO: ADD EXCEPTION FOR THIS?
     }
 }

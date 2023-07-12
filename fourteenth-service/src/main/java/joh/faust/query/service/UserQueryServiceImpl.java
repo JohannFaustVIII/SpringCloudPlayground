@@ -19,6 +19,7 @@ public class UserQueryServiceImpl implements UserQueryService {
     public List<User> findAll() {
         return StreamSupport
                 .stream(repository.findAll().spliterator(), false)
+                .map(User::fromEntity)
                 .collect(Collectors.toList());
     }
 }

@@ -1,30 +1,16 @@
 package joh.faust.model;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Getter
-@NoArgsConstructor
-@Entity
-@Table(name = "PostUsers")
-public class User {
+public record User(long id, String name, List<Post> posts) {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Setter
-    private String name;
-
-    @OneToMany
-    private List<Post> posts = new ArrayList<>();
-
-    public User(String name) {
-        this.name = name;
+    public static User fromEntity(joh.faust.entity.User entityUser) {
+        return new User(
+                entityUser.getId(),
+                entityUser.getName(),
+                entityUser.getPosts().stream().map(Post::fromEntity).collect(Collectors.toList())
+        );
     }
+
 }
