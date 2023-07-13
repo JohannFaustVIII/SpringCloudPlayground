@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +23,16 @@ public class User {
     @Setter
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Post> posts = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    @Fetch(FetchMode.JOIN)
+    private List<Post> posts;
 
     public User(String name) {
+        this(name, new ArrayList<>());
+    }
+
+    public User(String name, List<Post> posts) {
         this.name = name;
+        this.posts = posts;
     }
 }
