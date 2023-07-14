@@ -23,7 +23,7 @@ public class User {
     @Setter
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user")
     @Fetch(FetchMode.JOIN)
     private List<Post> posts;
 

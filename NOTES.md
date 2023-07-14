@@ -12,6 +12,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [How multiple cache names work for the same method?](#how-multiple-cache-names-work-for-the-same-method)
  - [How to define multiple caching annotations for a method?](#how-to-define-multiple-caching-annotations-for-a-method)
  - [What is Liquibase?](#what-is-liquibase)
+ - [Why use mappedBy in bidirectional relationship?](#why-use-mappedby-in-bidirectional-relationship)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -156,3 +157,44 @@ from JPA to manipulate database (and it should never be done! The only proper va
 `validate` to check if fields and tables matches etc.). And it helps to make proper migration of a database on production.
 And to add example data to a database for development, but without pushing that to production, because of using different
 profiles. And can set proper rollback rule if migration fails.
+
+## Why use mappedBy in bidirectional relationship?
+
+Assume that we have two entities as below.
+
+```java
+@Entity
+public class Author {
+
+ @Id
+ @GeneratedValue(strategy = GenerationType.AUTO)
+ private Long id;
+
+ @OneToMany(fetch = FetchType.LAZY, mappedBy = "author")
+ private List<Post> posts;
+}
+
+
+@Entity
+public class Post {
+
+ @Id
+ @GeneratedValue(strategy = GenerationType.AUTO)
+ private Long id;
+
+ @ManyToOne(fetch = FetchType.LAZY)
+ @JoinColumn(name = "author_id")
+ private Author author;
+
+}
+```
+
+What do we expect in a database? That `Post` table will have a foreign key in column `author_id` referencing to `Author`
+table. What about `Author` table? It should only have id. No information about author's posts there. So what way should 
+JPA get that data? Here the problem begins. It doesn't have a way, and it needs help. And here mappedBy comes. It is used
+to tell what field in other class should be checked to look for reference. Proper terminology in owning and non-owning side
+of relation. `Post` is owning side of relation, because it owns data about what author made it. `Author` is non-owning side
+because it doesn't contain any data, in its table, about posts. `mappedBy` is used to determine that relation and declare
+which side is owning, and which is non-owning. And what problem does it solve? For example, problem with adding new posts.
+It is enough to just add new Post object with author inside, WITHOUT updating Author object's list about its posts, because
+that side will be updated, and reading Author object will be done without missing data about posts.
