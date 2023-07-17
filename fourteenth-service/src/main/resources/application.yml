@@ -10,7 +10,13 @@ spring:
   application:
     name: 14-fourteenth-service
   datasource:
-    url: jdbc:h2:file:./fourteenth-database
+    url: jdbc:h2:file:./fourteenth
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        webAllowOthers: true
   jpa:
     hibernate:
       ddlAuto: create-only
