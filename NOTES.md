@@ -13,6 +13,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [How to define multiple caching annotations for a method?](#how-to-define-multiple-caching-annotations-for-a-method)
  - [What is Liquibase?](#what-is-liquibase)
  - [Why use mappedBy in bidirectional relationship?](#why-use-mappedby-in-bidirectional-relationship)
+ - [How to use @JoinColumn annotation?](#how-to-use-joincolumn-annotation)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -198,3 +199,14 @@ because it doesn't contain any data, in its table, about posts. `mappedBy` is us
 which side is owning, and which is non-owning. And what problem does it solve? For example, problem with adding new posts.
 It is enough to just add new Post object with author inside, WITHOUT updating Author object's list about its posts, because
 that side will be updated, and reading Author object will be done without missing data about posts.
+
+## How to use @JoinColumn annotation?
+
+`@JoinColumn` annotation is used to define column in a table which will define column name to contain foreign key to another
+table. However, it also defines an owner of relationship in bidirectional relationship. So, if we have two entities, one 
+using `@OneToMany` annotation, and another using `@ManyToOne`, expected is to use `@JoinColumn` on `@ManyToOne` annotated
+field, and `mappedBy` in `@OneToMany` annotation.
+
+And now some theory (because I didn't check it)... If `@ManyToOne` is expected to be the owner of relationship, it can't define
+`mappedBy` and can have defined `@JoinColumn`. Other side, with `@OneToMany` is expected to set `insertable` and `updatable`
+properties to false. That way of declaring relation is supposed to produce more `UPDATE` statements.
