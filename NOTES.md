@@ -14,6 +14,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is Liquibase?](#what-is-liquibase)
  - [Why use mappedBy in bidirectional relationship?](#why-use-mappedby-in-bidirectional-relationship)
  - [How to use @JoinColumn annotation?](#how-to-use-joincolumn-annotation)
+ - [When to use @ControllerAdvice?](#when-to-use-controlleradvice)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -210,3 +211,8 @@ field, and `mappedBy` in `@OneToMany` annotation.
 And now some theory (because I didn't check it)... If `@ManyToOne` is expected to be the owner of relationship, it can't define
 `mappedBy` and can have defined `@JoinColumn`. Other side, with `@OneToMany` is expected to set `insertable` and `updatable`
 properties to false. That way of declaring relation is supposed to produce more `UPDATE` statements.
+
+## When to use @ControllerAdvice?
+
+`@ControllerAdvice` is used to define a class handling exceptions from controllers. In simple words: to define global
+exception handler instead of defining exception handling in each controller separately.
