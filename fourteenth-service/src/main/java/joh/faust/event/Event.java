@@ -22,13 +22,13 @@ public class Event {
     // TODO: reload from the db
     // TODO: learn about projection and make the whole idea KISS
 
-    public UUID id;
+    private UUID id;
     private String aggregateId;
     private String eventType;
     private String aggregateType;
     private long version;
     private byte[] data;
-    public LocalDateTime created;
+    private LocalDateTime created;
 
     public Event(String eventType, String aggregateType) {
         this.id = UUID.randomUUID();
