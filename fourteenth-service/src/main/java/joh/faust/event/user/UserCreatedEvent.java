@@ -1,13 +1,12 @@
 package joh.faust.event.user;
 
-import joh.faust.event.ActionEvent;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
-public class UserCreatedEvent extends ActionEvent {
+public class UserCreatedEvent extends UserEvent {
 
     private final UUID newUserId;
     private final String userName;

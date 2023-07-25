@@ -22,4 +22,8 @@ public abstract class ActionEvent {
         this.eventId = eventId;
         this.created = created;
     }
+
+    public abstract String getAggregateType();
+
+    public abstract String getEventType();
 }
