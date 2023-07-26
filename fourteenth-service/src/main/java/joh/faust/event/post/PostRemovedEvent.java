@@ -18,4 +18,9 @@ public class PostRemovedEvent extends PostEvent {
         super(eventId, created);
         this.removedPostId = removedPostId;
     }
+
+    @Override
+    public String getEventType() {
+        return PostEventType.getByClass(getClass()).getType();
+    }
 }

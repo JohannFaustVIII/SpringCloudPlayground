@@ -12,6 +12,7 @@ public class UserCreatedEvent extends UserEvent {
     private final String userName;
 
     public UserCreatedEvent(UUID newUserId, String userName) {
+        super();
         this.newUserId = newUserId;
         this.userName = userName;
     }
@@ -20,5 +21,10 @@ public class UserCreatedEvent extends UserEvent {
         super(eventId, created);
         this.newUserId = newUserId;
         this.userName = userName;
+    }
+
+    @Override
+    public String getEventType() {
+        return UserEventType.getByClass(getClass()).getType();
     }
 }

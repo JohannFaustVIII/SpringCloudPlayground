@@ -28,4 +28,9 @@ public class PostCreatedEvent extends PostEvent {
         this.postName = postName;
         this.postContent = postContent;
     }
+
+    @Override
+    public String getEventType() {
+        return PostEventType.getByClass(getClass()).getType();
+    }
 }

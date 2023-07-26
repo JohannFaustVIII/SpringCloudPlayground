@@ -12,6 +12,7 @@ public class PostContentUpdatedEvent extends PostEvent {
     private final String newContent;
 
     public PostContentUpdatedEvent(UUID postId, String newContent) {
+        super();
         this.postId = postId;
         this.newContent = newContent;
     }
@@ -20,5 +21,10 @@ public class PostContentUpdatedEvent extends PostEvent {
         super(eventId, created);
         this.postId = postId;
         this.newContent = newContent;
+    }
+
+    @Override
+    public String getEventType() {
+        return PostEventType.getByClass(getClass()).getType();
     }
 }
