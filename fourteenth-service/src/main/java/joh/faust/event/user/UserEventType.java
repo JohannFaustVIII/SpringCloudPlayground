@@ -1,6 +1,7 @@
 package joh.faust.event.user;
 
 import joh.faust.event.EventType;
+import joh.faust.event.SerializerUtils;
 
 public enum UserEventType implements EventType {
 
@@ -31,5 +32,9 @@ public enum UserEventType implements EventType {
             }
         }
         throw new RuntimeException(); //TODO: Add proper exception
+    }
+
+    public UserEvent deserialize(byte[] bytes) {
+        return SerializerUtils.deserializeFromJsonBytes(bytes, eventClass);
     }
 }

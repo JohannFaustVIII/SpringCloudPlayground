@@ -1,6 +1,7 @@
 package joh.faust.event.post;
 
 import joh.faust.event.EventType;
+import joh.faust.event.SerializerUtils;
 
 public enum PostEventType implements EventType {
 
@@ -34,5 +35,9 @@ public enum PostEventType implements EventType {
             }
         }
         throw new RuntimeException(); //TODO: Add proper exception
+    }
+
+    public PostEvent deserialize(byte[] bytes) {
+        return SerializerUtils.deserializeFromJsonBytes(bytes, eventClass);
     }
 }

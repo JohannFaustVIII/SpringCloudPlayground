@@ -20,4 +20,6 @@ public abstract class UserEvent extends ActionEvent {
     public String getAggregateType() {
         return AggregateType.getByClass(getClass()).getType();
     }
+
+
 }
