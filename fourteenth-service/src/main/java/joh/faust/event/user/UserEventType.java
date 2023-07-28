@@ -31,10 +31,23 @@ public enum UserEventType implements EventType {
                 return type;
             }
         }
-        throw new RuntimeException(); //TODO: Add proper exception
+        throw new UserEventTypeNotFoundException();
+    }
+
+    public static EventType getByTypeName(String typeName) {
+        for (UserEventType type : UserEventType.values()) {
+            if (type.getType().equals(typeName)) {
+                return type;
+            }
+        }
+        throw new UserEventTypeNotFoundException();
     }
 
     public UserEvent deserialize(byte[] bytes) {
         return SerializerUtils.deserializeFromJsonBytes(bytes, eventClass);
+    }
+
+    static class UserEventTypeNotFoundException extends RuntimeException {
+
     }
 }

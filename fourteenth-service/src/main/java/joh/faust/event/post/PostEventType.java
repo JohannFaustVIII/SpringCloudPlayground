@@ -37,7 +37,20 @@ public enum PostEventType implements EventType {
         throw new RuntimeException(); //TODO: Add proper exception
     }
 
+    public static EventType getByTypeName(String typeName) {
+        for (PostEventType type : PostEventType.values()) {
+            if (type.getType().equals(typeName)) {
+                return type;
+            }
+        }
+        throw new RuntimeException(); //TODO: Add proper exception
+    }
+
     public PostEvent deserialize(byte[] bytes) {
         return SerializerUtils.deserializeFromJsonBytes(bytes, eventClass);
+    }
+
+    static class PostEventTypeNotFoundException extends RuntimeException {
+
     }
 }

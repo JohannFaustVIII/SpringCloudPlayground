@@ -30,6 +30,19 @@ public enum AggregateType {
                 return type;
             }
         }
-        throw new RuntimeException(); //TODO: Add proper exception
+        throw new AggregateTypeNotFoundException();
+    }
+
+    public static AggregateType getByTypeName(String typeName) {
+        for (AggregateType type : AggregateType.values()) {
+            if (type.getType().equals(typeName)) {
+                return type;
+            }
+        }
+        throw new AggregateTypeNotFoundException();
+    }
+
+    static class AggregateTypeNotFoundException extends RuntimeException {
+
     }
 }
