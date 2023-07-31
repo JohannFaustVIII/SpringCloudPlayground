@@ -1,5 +1,6 @@
 package joh.faust.event.post;
 
+import joh.faust.event.ActionEvent;
 import joh.faust.event.EventType;
 import joh.faust.event.SerializerUtils;
 
@@ -28,6 +29,10 @@ public enum PostEventType implements EventType {
         return eventClass;
     }
 
+    public static ActionEvent toEvent(String typeName, byte[] bytes) {
+        return PostEventType.getByTypeName(typeName).deserialize(bytes);
+    }
+    
     public static EventType getByClass(Class<? extends PostEvent> eventClass) {
         for (PostEventType type : PostEventType.values()) {
             if (type.getEventClass().equals(eventClass)) {
@@ -37,7 +42,7 @@ public enum PostEventType implements EventType {
         throw new RuntimeException(); //TODO: Add proper exception
     }
 
-    public static EventType getByTypeName(String typeName) {
+    public static PostEventType getByTypeName(String typeName) {
         for (PostEventType type : PostEventType.values()) {
             if (type.getType().equals(typeName)) {
                 return type;

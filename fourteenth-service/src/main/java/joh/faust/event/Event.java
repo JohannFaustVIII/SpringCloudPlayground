@@ -36,4 +36,10 @@ public class Event {
         this.aggregateType = aggregateType;
         this.created = LocalDateTime.now();
     }
+
+    // TODO: WIP, just to see how it could be implemented
+    public ActionEvent getEvent() {
+        AggregateType aggregateType = AggregateType.getByTypeName(this.aggregateType);
+        return aggregateType.toEvent(this.eventType, this.data);
+    }
 }

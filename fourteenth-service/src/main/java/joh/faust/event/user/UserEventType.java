@@ -1,5 +1,6 @@
 package joh.faust.event.user;
 
+import joh.faust.event.ActionEvent;
 import joh.faust.event.EventType;
 import joh.faust.event.SerializerUtils;
 
@@ -25,6 +26,10 @@ public enum UserEventType implements EventType {
         return eventClass;
     }
 
+    public static ActionEvent toEvent(String typeName, byte[] bytes) {
+        return UserEventType.getByTypeName(typeName).deserialize(bytes);
+    }
+
     public static EventType getByClass(Class<? extends UserEvent> eventClass) {
         for (UserEventType type : UserEventType.values()) {
             if (type.getEventClass().equals(eventClass)) {
@@ -34,7 +39,7 @@ public enum UserEventType implements EventType {
         throw new UserEventTypeNotFoundException();
     }
 
-    public static EventType getByTypeName(String typeName) {
+    public static UserEventType getByTypeName(String typeName) {
         for (UserEventType type : UserEventType.values()) {
             if (type.getType().equals(typeName)) {
                 return type;
