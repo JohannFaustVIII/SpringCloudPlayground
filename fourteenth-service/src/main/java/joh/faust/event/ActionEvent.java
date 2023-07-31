@@ -2,7 +2,6 @@ package joh.faust.event;
 
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -26,4 +25,10 @@ public abstract class ActionEvent {
     public abstract String getAggregateType();
 
     public abstract String getEventType();
+
+    public byte[] toBytes() {
+        return SerializerUtils.serializeToJsonBytes(this);
+    }
+
+
 }
