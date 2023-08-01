@@ -39,7 +39,7 @@ public enum PostEventType implements EventType {
                 return type;
             }
         }
-        throw new RuntimeException(); //TODO: Add proper exception
+        throw new PostEventTypeNotFoundException();
     }
 
     public static PostEventType getByTypeName(String typeName) {
@@ -48,7 +48,7 @@ public enum PostEventType implements EventType {
                 return type;
             }
         }
-        throw new RuntimeException(); //TODO: Add proper exception
+        throw new PostEventTypeNotFoundException();
     }
 
     public PostEvent deserialize(byte[] bytes) {

@@ -35,7 +35,7 @@ public enum AggregateType {
         return toEvent.apply(eventType, dataBytes);
     }
 
-    public static AggregateType getByClass(Class<? extends ActionEvent> eventClass) { // FIXME: will child class equal to parent class? I think not
+    public static AggregateType getByClass(Class<? extends ActionEvent> eventClass) {
         for (AggregateType type : AggregateType.values()) {
             if (type.getEventClass().equals(eventClass)) {
                 return type;

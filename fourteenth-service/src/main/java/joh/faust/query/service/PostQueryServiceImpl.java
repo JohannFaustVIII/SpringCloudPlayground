@@ -30,7 +30,7 @@ public class PostQueryServiceImpl implements PostQueryService {
         return repository
                 .findById(query.getId())
                 .map(Post::fromEntity)
-                .orElseThrow(); // TODO: ADD EXCEPTION FOR THIS?
+                .orElseThrow(PostNotFoundException::new);
     }
 
     @Override
@@ -38,6 +38,10 @@ public class PostQueryServiceImpl implements PostQueryService {
         return repository
                 .findByName(query.getName())
                 .map(Post::fromEntity)
-                .orElseThrow();// TODO: ADD EXCEPTION FOR THIS?
+                .orElseThrow(PostNotFoundException::new);
+    }
+
+    static class PostNotFoundException extends RuntimeException {
+
     }
 }
