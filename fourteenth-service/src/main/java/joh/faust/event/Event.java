@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.UUID;
 
 // event to work as dto to db or event queue
@@ -41,5 +42,18 @@ public class Event {
     public ActionEvent getEvent() {
         AggregateType aggregateType = AggregateType.getByTypeName(this.aggregateType);
         return aggregateType.toEvent(this.eventType, this.data);
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", aggregateId='" + aggregateId + '\'' +
+                ", eventType='" + eventType + '\'' +
+                ", aggregateType='" + aggregateType + '\'' +
+                ", version=" + version +
+                ", data=" + Arrays.toString(data) +
+                ", created=" + created +
+                '}';
     }
 }
