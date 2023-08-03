@@ -26,6 +26,8 @@ public abstract class ActionEvent {
 
     public abstract String getEventType();
 
+    public abstract void applyEvent(Aggregate aggregate);
+
     public byte[] toBytes() {
         return SerializerUtils.serializeToJsonBytes(this);
     }

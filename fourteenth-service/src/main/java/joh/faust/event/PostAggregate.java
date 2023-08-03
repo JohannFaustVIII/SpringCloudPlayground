@@ -6,9 +6,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PostAggregate {
+public class PostAggregate extends Aggregate{
 
     private final Map<UUID, Post> posts = new HashMap<>();
+
+    protected PostAggregate() {
+        super(AggregateType.POST_EVENT);
+    }
+
+    @Override
+    public void when(ActionEvent event) {
+        event.applyEvent(this);
+    }
 
     //TODO: what does it need:
     // 1. handle all operations and produce proper events to save them in db (via repository)

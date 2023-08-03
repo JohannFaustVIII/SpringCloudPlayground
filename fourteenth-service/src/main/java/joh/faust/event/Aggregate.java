@@ -30,6 +30,10 @@ public abstract class Aggregate {
         });
     }
 
+    public <T extends Aggregate> T getAggregate() {
+        return (T) this;
+    }
+
     private void validate(Event event) {
         if (Objects.isNull(event) || !aggregateType.getType().equals(event.getAggregateType())) {
             throw new InvalidEventException(event.toString());

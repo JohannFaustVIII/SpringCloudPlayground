@@ -26,6 +26,13 @@ public class Post {
         this.user = user;
     }
 
+    public Post(Long id, String name, String content, User user) {
+        this.id = id;
+        this.name = name;
+        this.content = content;
+        this.user = user;
+    }
+
     public Long getId() {
         return id;
     }
