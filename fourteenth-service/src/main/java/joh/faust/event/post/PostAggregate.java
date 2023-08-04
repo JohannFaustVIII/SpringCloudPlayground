@@ -1,12 +1,14 @@
-package joh.faust.event;
+package joh.faust.event.post;
 
-import joh.faust.entity.Post; // I'm not sure if this is correct, what we want to use is not db entity, as it will be defined by events, nor model dto, as it is read only
+import joh.faust.event.ActionEvent;
+import joh.faust.event.Aggregate;
+import joh.faust.event.AggregateType;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class PostAggregate extends Aggregate{
+public class PostAggregate extends Aggregate {
 
     private final Map<UUID, Post> posts = new HashMap<>();
 
@@ -17,6 +19,18 @@ public class PostAggregate extends Aggregate{
     @Override
     public void when(ActionEvent event) {
         event.applyEvent(this);
+    }
+
+    void savePost(Post post) {
+        posts.put(post.getPostId(), post);
+    }
+
+    public Post getPost(UUID postId) {
+        return posts.get(postId);
+    }
+
+    public void removePost(UUID postId) {
+        posts.remove(postId);
     }
 
     //TODO: what does it need:

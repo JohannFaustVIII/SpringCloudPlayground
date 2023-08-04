@@ -1,8 +1,6 @@
 package joh.faust.event.post;
 
-import joh.faust.entity.Post;
 import joh.faust.event.Aggregate;
-import joh.faust.event.PostAggregate;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -40,12 +38,8 @@ public class PostCreatedEvent extends PostEvent {
     @Override
     public void applyEvent(Aggregate aggregate) {
         PostAggregate postAggregate = aggregate.getAggregate();
-        // make a class which doesn't need user to don't require to read data from aggregate via repository?
-        // WIP
-//        postAggregate.addPost(
-//                new Post(this.newPostId, this.postName, this.postContent, postAggregate.getUser(creatorId))
-//        );
-
-
+        postAggregate.savePost(
+                new Post(this.newPostId, this.postName, this.postContent, this.creatorId)
+        );
     }
 }

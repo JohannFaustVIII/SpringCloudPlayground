@@ -1,5 +1,6 @@
 package joh.faust.event.post;
 
+import joh.faust.event.Aggregate;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -22,5 +23,11 @@ public class PostRemovedEvent extends PostEvent {
     @Override
     public String getEventType() {
         return PostEventType.getByClass(getClass()).getType();
+    }
+
+    @Override
+    public void applyEvent(Aggregate aggregate) {
+        PostAggregate postAggregate = aggregate.getAggregate();
+        postAggregate.removePost(this.removedPostId);
     }
 }

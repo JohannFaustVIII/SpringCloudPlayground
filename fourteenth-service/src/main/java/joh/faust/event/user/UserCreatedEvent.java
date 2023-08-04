@@ -1,5 +1,6 @@
 package joh.faust.event.user;
 
+import joh.faust.event.Aggregate;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -26,5 +27,13 @@ public class UserCreatedEvent extends UserEvent {
     @Override
     public String getEventType() {
         return UserEventType.getByClass(getClass()).getType();
+    }
+
+    @Override
+    public void applyEvent(Aggregate aggregate) {
+        UserAggregate userAggregate = aggregate.getAggregate();
+        userAggregate.saveUser(
+                new User(this.newUserId, userName)
+        );
     }
 }

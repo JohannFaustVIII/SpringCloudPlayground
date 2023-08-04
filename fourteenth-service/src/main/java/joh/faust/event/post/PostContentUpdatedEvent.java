@@ -1,5 +1,6 @@
 package joh.faust.event.post;
 
+import joh.faust.event.Aggregate;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -26,5 +27,13 @@ public class PostContentUpdatedEvent extends PostEvent {
     @Override
     public String getEventType() {
         return PostEventType.getByClass(getClass()).getType();
+    }
+
+    @Override
+    public void applyEvent(Aggregate aggregate) {
+        PostAggregate postAggregate = aggregate.getAggregate();
+        Post post = postAggregate.getPost(this.postId);
+        post.setPostContent(this.newContent);
+        postAggregate.savePost(post);
     }
 }
