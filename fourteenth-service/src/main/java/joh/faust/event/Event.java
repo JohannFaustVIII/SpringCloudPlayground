@@ -31,10 +31,11 @@ public class Event {
     private byte[] data;
     private LocalDateTime created;
 
-    public Event(String eventType, String aggregateType) {
+    public Event(String eventType, String aggregateType, long version, byte[] data) {
         this.id = UUID.randomUUID();
         this.eventType = eventType;
         this.aggregateType = aggregateType;
+        this.version = version;
         this.created = LocalDateTime.now();
     }
 

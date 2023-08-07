@@ -25,11 +25,11 @@ public class PostAggregate extends Aggregate {
         posts.put(post.getPostId(), post);
     }
 
-    public Post getPost(UUID postId) {
+    Post getPost(UUID postId) {
         return posts.get(postId);
     }
 
-    public void removePost(UUID postId) {
+    void removePost(UUID postId) {
         posts.remove(postId);
     }
 

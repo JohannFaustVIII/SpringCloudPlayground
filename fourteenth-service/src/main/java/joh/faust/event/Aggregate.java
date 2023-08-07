@@ -2,6 +2,7 @@ package joh.faust.event;
 
 import joh.faust.event.post.PostEvent;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -32,6 +33,16 @@ public abstract class Aggregate {
 
     public <T extends Aggregate> T getAggregate() {
         return (T) this;
+    }
+
+    protected Event createEvent(ActionEvent event) {
+        return Event.builder()
+                .aggregateType(event.getAggregateType())
+                .version(this.version)
+                .eventType(event.getEventType())
+                .data(event.toBytes())
+                .created(LocalDateTime.now())
+                .build();
     }
 
     private void validate(Event event) {
