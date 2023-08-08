@@ -1,12 +1,14 @@
 package joh.faust.event.post;
 
 import joh.faust.event.Aggregate;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
+@Builder
 public class PostCreatedEvent extends PostEvent {
 
     private final UUID newPostId;

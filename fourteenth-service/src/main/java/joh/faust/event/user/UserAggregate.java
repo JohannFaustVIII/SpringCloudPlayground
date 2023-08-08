@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 @Component
@@ -28,14 +29,22 @@ public class UserAggregate extends Aggregate {
     }
 
     public void createUser(String userName) {
-        UUID userId = null;
+        Objects.requireNonNull(userName);
+
+        UUID userId;
         do {
             userId = UUID.randomUUID();
-        } while (!users.containsKey(userId));
-        version++; // TODO: this part need to be resolved, requires to increment version in each place
-        ActionEvent event = new UserCreatedEvent(userId, userName);
+        } while (users.containsKey(userId));
 
-        changes.add(createEvent(event));
-        when(event);
+        applyEvent(
+                UserCreatedEvent.builder()
+                        .newUserId(userId)
+                        .userName(userName)
+                        .build()
+        );
+    }
+
+    public boolean existsUser(UUID creatorId) {
+        return users.containsKey(creatorId);
     }
 }

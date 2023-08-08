@@ -31,6 +31,12 @@ public abstract class Aggregate {
         });
     }
 
+    public void applyEvent(ActionEvent event) {
+        this.version++;
+        changes.add(createEvent(event));
+        when(event);
+    }
+
     public <T extends Aggregate> T getAggregate() {
         return (T) this;
     }

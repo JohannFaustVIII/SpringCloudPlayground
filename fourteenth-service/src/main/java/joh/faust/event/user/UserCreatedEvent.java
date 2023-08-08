@@ -1,11 +1,13 @@
 package joh.faust.event.user;
 
 import joh.faust.event.Aggregate;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Builder
 @Getter
 public class UserCreatedEvent extends UserEvent {
 
