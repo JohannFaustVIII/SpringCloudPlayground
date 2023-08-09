@@ -24,7 +24,6 @@ public class Event {
     // TODO: learn about projection and make the whole idea KISS
 
     private UUID id;
-    private String aggregateId;
     private String eventType;
     private String aggregateType;
     private long version;
@@ -49,7 +48,6 @@ public class Event {
     public String toString() {
         return "Event{" +
                 "id=" + id +
-                ", aggregateId='" + aggregateId + '\'' +
                 ", eventType='" + eventType + '\'' +
                 ", aggregateType='" + aggregateType + '\'' +
                 ", version=" + version +
