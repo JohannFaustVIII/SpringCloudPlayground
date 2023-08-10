@@ -41,6 +41,10 @@ public abstract class Aggregate {
         return (T) this;
     }
 
+    public List<Event> getChanges() {
+        return changes;
+    }
+
     protected Event createEvent(ActionEvent event) {
         return Event.builder()
                 .aggregateType(event.getAggregateType())
