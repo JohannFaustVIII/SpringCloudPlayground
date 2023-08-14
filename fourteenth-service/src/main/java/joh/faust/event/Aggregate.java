@@ -20,7 +20,7 @@ public abstract class Aggregate {
 
     public abstract void when(ActionEvent event);
 
-    public void load(List<Event> events) {
+    public void load(Iterable<Event> events) {
         events.forEach(event -> {
             validate(event);
             when(event.getEvent());
@@ -39,6 +39,10 @@ public abstract class Aggregate {
 
     public <T extends Aggregate> T getAggregate() {
         return (T) this;
+    }
+
+    public AggregateType getAggregateType() {
+        return this.aggregateType;
     }
 
     public List<Event> getChanges() {

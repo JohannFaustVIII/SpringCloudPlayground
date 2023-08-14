@@ -3,6 +3,7 @@ package joh.faust.event.post;
 import joh.faust.event.ActionEvent;
 import joh.faust.event.Aggregate;
 import joh.faust.event.AggregateType;
+import joh.faust.event.EventRepository;
 import joh.faust.event.user.UserAggregate;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +19,11 @@ public class PostAggregate extends Aggregate {
 
     private final UserAggregate userAggregate;
 
-    protected PostAggregate(UserAggregate userAggregate) {
+    protected PostAggregate(EventRepository eventRepository) {
         super(AggregateType.POST_EVENT);
-        this.userAggregate = userAggregate;
+        this.userAggregate = new UserAggregate();
+        this.userAggregate.load(eventRepository.findByAggregateType(this.userAggregate.getAggregateType().getType()));
+        this.load(eventRepository.findByAggregateType(this.getAggregateType().getType())); // TODO: doesn't look good?
     }
 
     @Override
