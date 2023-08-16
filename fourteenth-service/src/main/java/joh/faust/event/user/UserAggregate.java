@@ -3,8 +3,6 @@ package joh.faust.event.user;
 import joh.faust.event.ActionEvent;
 import joh.faust.event.Aggregate;
 import joh.faust.event.AggregateType;
-import joh.faust.event.EventRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -19,12 +17,6 @@ public class UserAggregate extends Aggregate {
 
     public UserAggregate() {
         super(AggregateType.USER_EVENT);
-    }
-
-    @Autowired
-    public UserAggregate(EventRepository eventRepository) {
-        super(AggregateType.USER_EVENT);
-        this.load(eventRepository.findByAggregateType(getAggregateType().getType())); // TODO: doesn't look good?
     }
 
     @Override
