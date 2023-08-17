@@ -1,13 +1,17 @@
 package joh.faust.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.UUID;
 
 @Entity
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @UuidGenerator
+    private UUID id;
 
     private String name;
 
@@ -26,18 +30,18 @@ public class Post {
         this.user = user;
     }
 
-    public Post(Long id, String name, String content, User user) {
+    public Post(UUID id, String name, String content, User user) {
         this.id = id;
         this.name = name;
         this.content = content;
         this.user = user;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

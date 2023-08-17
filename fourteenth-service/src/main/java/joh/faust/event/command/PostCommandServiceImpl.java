@@ -25,7 +25,7 @@ public class PostCommandServiceImpl implements PostCommandService {
         postAggregate.createPost(
                 command.getName(),
                 command.getContent(),
-                UUID.fromString(command.getCreatorId().toString()) // TODO: CHANGE TYPE FROM LONG TO UUID
+                command.getCreatorId()
         );
 
         eventRepository.saveAll(postAggregate.getChanges()); // will it save only new or all? should add only new, and update existing
@@ -34,7 +34,7 @@ public class PostCommandServiceImpl implements PostCommandService {
     @Override
     public void updatePostName(UpdatePostName command) {
         postAggregate.updatePostName(
-                UUID.fromString(command.getId().toString()), // TODO: CHANGE TYPE FROM LONG TO UUID
+                command.getId(),
                 command.getName()
         );
 
@@ -44,7 +44,7 @@ public class PostCommandServiceImpl implements PostCommandService {
     @Override
     public void updatePostContent(UpdatePostContent command) {
         postAggregate.updatePostContent(
-                UUID.fromString(command.getId().toString()), // TODO: CHANGE TYPE FROM LONG TO UUID
+                command.getId(),
                 command.getContent()
         );
 
@@ -54,7 +54,7 @@ public class PostCommandServiceImpl implements PostCommandService {
     @Override
     public void deletePost(DeletePost command) {
         postAggregate.deletePost(
-                UUID.fromString(command.getId().toString()) // TODO: CHANGE TYPE FROM LONG TO UUID
+                command.getId()
         );
 
         eventRepository.saveAll(postAggregate.getChanges());

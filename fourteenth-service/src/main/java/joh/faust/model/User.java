@@ -1,9 +1,10 @@
 package joh.faust.model;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
-public record User(long id, String name, List<Post> posts) {
+public record User(UUID id, String name, List<Post> posts) {
 
     public static User fromEntity(joh.faust.entity.User entityUser) {
         return fromEntity(

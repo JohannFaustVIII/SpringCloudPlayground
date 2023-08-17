@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,7 +28,7 @@ public class PostQueryController {
     // TODO: below searches can be done better I think
 
     @GetMapping("/id/{id}")
-    public Post getById(@PathVariable("id") long id) {
+    public Post getById(@PathVariable("id") UUID id) {
         return postService.findPostById(new PostById(id));
     }
 
