@@ -24,10 +24,7 @@ public abstract class Aggregate {
         events.forEach(event -> {
             validate(event);
             when(event.getEvent());
-
-            //TODO: think: loading has to check versions, but generating events has to set proper version
-            // and should loading add events to changes or not? if not, the aggregate is equal to being a snapshot
-            // so why not to save it to db, and then load from db, instead of loading via events?
+            this.version = event.getVersion();
         });
     }
 

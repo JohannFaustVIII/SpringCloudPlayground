@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-
-// TODO: should it be injected into aggregate, or aggregate should return event to be saved on command handler layer?
 @Repository
 public interface EventRepository extends CrudRepository<Event, UUID> {
 
