@@ -16,12 +16,11 @@ import java.util.UUID;
 @Builder
 public class Event {
 
-    // TODO: below should be in event entity? maybe
-    // TODO: how to handle successful insert/update/delete? Transactional and then create event if successful?
-    // TODO: the idea has changed: keep the state of a single object as aggregate, apply changes by generating events,
-    // TODO: increase versions with each change, save snapshots to db to keep reloading easier, and reapply events when
-    // TODO: reload from the db
     // TODO: learn about projection and make the whole idea KISS
+    // TODO: now think about projection - aggregate generates event and handler is supposed to send it to db
+    // TODO: soo projection should always read all events from db and recreate state?
+    // TODO: might be better to listen to changes (more like idea to use with message queue)
+    // TODO: or apply only events after the given version of current projection (and that could work with db)
 
     private UUID id;
     private String eventType;
@@ -38,7 +37,6 @@ public class Event {
         this.created = LocalDateTime.now();
     }
 
-    // TODO: WIP, just to see how it could be implemented
     public ActionEvent getEvent() {
         AggregateType aggregateType = AggregateType.getByTypeName(this.aggregateType);
         return aggregateType.toEvent(this.eventType, this.data);

@@ -115,10 +115,4 @@ public class PostAggregate extends Aggregate {
 
     private class PostUnknownIdException extends RuntimeException {
     }
-
-    //TODO: what does it need:
-    // 1. handle all operations and produce proper events to save them in db (via repository)
-    // 2. be reproducible from events from a database
-    // how it should be created? constructor with injected repository, use it to read events and remake the state?
-
 }
