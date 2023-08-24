@@ -28,6 +28,8 @@ public abstract class ActionEvent {
 
     public abstract void applyEvent(Aggregate aggregate);
 
+    public abstract void applyEvent(Projection projection);
+
     public byte[] toBytes() {
         return SerializerUtils.serializeToJsonBytes(this);
     }

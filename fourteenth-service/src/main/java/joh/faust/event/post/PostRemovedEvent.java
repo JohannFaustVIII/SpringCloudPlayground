@@ -1,6 +1,7 @@
 package joh.faust.event.post;
 
 import joh.faust.event.Aggregate;
+import joh.faust.event.Projection;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -31,5 +32,12 @@ public class PostRemovedEvent extends PostEvent {
     public void applyEvent(Aggregate aggregate) {
         PostAggregate postAggregate = aggregate.getAggregate();
         postAggregate.removePost(this.removedPostId);
+    }
+
+    @Override
+    public void applyEvent(Projection projection) {
+        PostProjection postProjection = projection.getProjection();
+        postProjection.removePost(this.removedPostId);
+
     }
 }

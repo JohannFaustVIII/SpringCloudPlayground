@@ -1,6 +1,7 @@
 package joh.faust.event.post;
 
 import joh.faust.event.Aggregate;
+import joh.faust.event.Projection;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -41,6 +42,14 @@ public class PostCreatedEvent extends PostEvent {
     public void applyEvent(Aggregate aggregate) {
         PostAggregate postAggregate = aggregate.getAggregate();
         postAggregate.savePost(
+                new Post(this.newPostId, this.postName, this.postContent, this.creatorId)
+        );
+    }
+
+    @Override
+    public void applyEvent(Projection projection) {
+        PostProjection postProjection = projection.getProjection();
+        postProjection.savePost(
                 new Post(this.newPostId, this.postName, this.postContent, this.creatorId)
         );
     }

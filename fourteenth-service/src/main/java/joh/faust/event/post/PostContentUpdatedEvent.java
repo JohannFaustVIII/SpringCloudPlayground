@@ -1,6 +1,7 @@
 package joh.faust.event.post;
 
 import joh.faust.event.Aggregate;
+import joh.faust.event.Projection;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -37,5 +38,13 @@ public class PostContentUpdatedEvent extends PostEvent {
         Post post = postAggregate.getPost(this.postId);
         post.setPostContent(this.newContent);
         postAggregate.savePost(post);
+    }
+
+    @Override
+    public void applyEvent(Projection projection) {
+        PostProjection postProjection = projection.getProjection();
+        Post post = postProjection.findById(this.postId).orElseThrow();
+        post.setPostContent(this.newContent);
+        postProjection.savePost(post);
     }
 }

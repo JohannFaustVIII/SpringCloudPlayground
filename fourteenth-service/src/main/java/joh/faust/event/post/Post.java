@@ -9,6 +9,7 @@ public class Post {
     @Getter
     private UUID postId;
     @Setter
+    @Getter
     private String postName;
     @Setter
     private String postContent;

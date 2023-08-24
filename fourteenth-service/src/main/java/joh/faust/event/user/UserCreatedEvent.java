@@ -1,6 +1,7 @@
 package joh.faust.event.user;
 
 import joh.faust.event.Aggregate;
+import joh.faust.event.Projection;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -35,6 +36,14 @@ public class UserCreatedEvent extends UserEvent {
     public void applyEvent(Aggregate aggregate) {
         UserAggregate userAggregate = aggregate.getAggregate();
         userAggregate.saveUser(
+                new User(this.newUserId, userName)
+        );
+    }
+
+    @Override
+    public void applyEvent(Projection projection) {
+        UserProjection userProjection = projection.getProjection();
+        userProjection.saveUser(
                 new User(this.newUserId, userName)
         );
     }

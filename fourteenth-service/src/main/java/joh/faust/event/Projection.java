@@ -6,4 +6,7 @@ public abstract class Projection {
     //  as for CQRS - yes, but for KISS - it doesn't look exactly right
     //  TO THINK FURTHER
 
+    public <T extends Projection> T getProjection() {
+        return (T) this;
+    }
 }
