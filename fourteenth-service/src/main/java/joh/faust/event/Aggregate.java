@@ -1,7 +1,5 @@
 package joh.faust.event;
 
-import joh.faust.event.post.PostEvent;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +8,12 @@ import java.util.Objects;
 // abstraction to be extended by each aggregate of entity in service
 public abstract class Aggregate {
 
-    protected final AggregateType aggregateType;
-    protected long version = 0;
-    protected final List<Event> changes = new ArrayList<>();
+    private final EventMetatype eventMetatype;
+    private long version = 0;
+    private final List<Event> changes = new ArrayList<>();
 
-    protected Aggregate(AggregateType aggregateType) {
-        this.aggregateType = aggregateType;
+    protected Aggregate(EventMetatype eventMetatype) {
+        this.eventMetatype = eventMetatype;
     }
 
     public abstract void when(ActionEvent event);
@@ -38,8 +36,8 @@ public abstract class Aggregate {
         return (T) this;
     }
 
-    public AggregateType getAggregateType() {
-        return this.aggregateType;
+    public EventMetatype getEventMetatype() {
+        return this.eventMetatype;
     }
 
     public List<Event> getChanges() {
@@ -57,7 +55,7 @@ public abstract class Aggregate {
     }
 
     private void validate(Event event) {
-        if (Objects.isNull(event) || !aggregateType.getType().equals(event.getAggregateType())) {
+        if (Objects.isNull(event) || !eventMetatype.getType().equals(event.getAggregateType())) {
             throw new InvalidEventException(event.toString());
         }
         if (this.version + 1 != event.getVersion()) {

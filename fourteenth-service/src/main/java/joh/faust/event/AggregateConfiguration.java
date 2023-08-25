@@ -11,7 +11,7 @@ public class AggregateConfiguration {
     @Bean
     public PostAggregate postAggregate(EventRepository eventRepository, UserAggregate userAggregate) {
         PostAggregate postAggregate = new PostAggregate(userAggregate);
-        String aggregateType = postAggregate.getAggregateType().getType();
+        String aggregateType = postAggregate.getEventMetatype().getType();
         Iterable<Event> events = eventRepository.findByAggregateType(aggregateType);
         postAggregate.load(events);
         return postAggregate;
@@ -20,7 +20,7 @@ public class AggregateConfiguration {
     @Bean
     public UserAggregate userAggregate(EventRepository eventRepository) {
         UserAggregate userAggregate = new UserAggregate();
-        String aggregateType = userAggregate.getAggregateType().getType();
+        String aggregateType = userAggregate.getEventMetatype().getType();
         Iterable<Event> events = eventRepository.findByAggregateType(aggregateType);
         userAggregate.load(events);
         return userAggregate;

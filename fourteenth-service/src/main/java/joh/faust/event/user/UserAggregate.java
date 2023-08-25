@@ -2,7 +2,7 @@ package joh.faust.event.user;
 
 import joh.faust.event.ActionEvent;
 import joh.faust.event.Aggregate;
-import joh.faust.event.AggregateType;
+import joh.faust.event.EventMetatype;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -16,7 +16,7 @@ public class UserAggregate extends Aggregate {
     private final Map<UUID, User> users = new HashMap<>();
 
     public UserAggregate() {
-        super(AggregateType.USER_EVENT);
+        super(EventMetatype.USER_EVENT);
     }
 
     @Override

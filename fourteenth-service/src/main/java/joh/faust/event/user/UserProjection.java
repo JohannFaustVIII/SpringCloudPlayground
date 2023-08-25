@@ -1,5 +1,6 @@
 package joh.faust.event.user;
 
+import joh.faust.event.EventMetatype;
 import joh.faust.event.Projection;
 
 import java.util.ArrayList;
@@ -8,6 +9,10 @@ import java.util.List;
 public class UserProjection extends Projection {
 
     private final List<User> users = new ArrayList<>();
+
+    protected UserProjection() {
+        super(EventMetatype.USER_EVENT);
+    }
 
     public List<User> getAllUsers() {
         return users;

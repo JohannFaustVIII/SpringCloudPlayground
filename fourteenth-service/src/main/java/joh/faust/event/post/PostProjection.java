@@ -1,5 +1,6 @@
 package joh.faust.event.post;
 
+import joh.faust.event.EventMetatype;
 import joh.faust.event.Projection;
 
 import java.util.ArrayList;
@@ -10,6 +11,10 @@ import java.util.UUID;
 public class PostProjection extends Projection {
 
     private final List<Post> posts = new ArrayList<>();
+
+    protected PostProjection() {
+        super(EventMetatype.POST_EVENT);
+    }
 
     public List<Post> getAllPosts() {
         return posts;

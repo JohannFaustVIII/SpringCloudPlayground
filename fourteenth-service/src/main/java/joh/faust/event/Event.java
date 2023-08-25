@@ -38,8 +38,8 @@ public class Event {
     }
 
     public ActionEvent getEvent() {
-        AggregateType aggregateType = AggregateType.getByTypeName(this.aggregateType);
-        return aggregateType.toEvent(this.eventType, this.data);
+        EventMetatype eventMetatype = EventMetatype.getByTypeName(this.aggregateType);
+        return eventMetatype.toEvent(this.eventType, this.data);
     }
 
     @Override
