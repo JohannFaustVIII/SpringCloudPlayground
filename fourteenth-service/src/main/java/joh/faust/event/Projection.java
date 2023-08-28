@@ -52,4 +52,8 @@ public abstract class Projection {
             super(object);
         }
     }
+
+    public long getVersion() {
+        return version;
+    }
 }
