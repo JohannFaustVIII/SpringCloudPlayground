@@ -12,7 +12,7 @@ public class PostProjection extends Projection {
 
     private final List<Post> posts = new ArrayList<>();
 
-    protected PostProjection() {
+    public PostProjection() {
         super(EventMetatype.POST_EVENT);
     }
 

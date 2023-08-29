@@ -10,7 +10,7 @@ public class UserProjection extends Projection {
 
     private final List<User> users = new ArrayList<>();
 
-    protected UserProjection() {
+    public UserProjection() {
         super(EventMetatype.USER_EVENT);
     }
 

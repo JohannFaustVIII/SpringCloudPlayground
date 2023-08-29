@@ -56,4 +56,8 @@ public abstract class Projection {
     public long getVersion() {
         return version;
     }
+
+    public EventMetatype getEventMetatype() {
+        return eventMetatype;
+    }
 }
