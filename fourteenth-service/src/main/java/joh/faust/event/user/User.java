@@ -8,6 +8,8 @@ public class User {
 
     @Getter
     private final UUID userId;
+
+    @Getter
     private final String userName;
 
     public User(UUID userId, String userName) {

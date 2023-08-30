@@ -12,6 +12,7 @@ public class Post {
     @Getter
     private String postName;
     @Setter
+    @Getter
     private String postContent;
     private UUID creatorId;
 
