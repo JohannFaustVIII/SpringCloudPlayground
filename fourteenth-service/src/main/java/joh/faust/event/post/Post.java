@@ -14,6 +14,8 @@ public class Post {
     @Setter
     @Getter
     private String postContent;
+
+    @Getter
     private UUID creatorId;
 
     public Post(UUID postId, String postName, String postContent, UUID creatorId) {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class PostProjection extends Projection {
 
@@ -18,6 +19,13 @@ public class PostProjection extends Projection {
 
     public List<Post> getAllPosts() {
         return posts;
+    }
+
+    public List<Post> findByCreatorId(UUID creatorId) {
+        return posts
+                .stream()
+                .filter(post -> creatorId.equals(post.getPostId()))
+                .collect(Collectors.toList());
     }
 
     public Optional<Post> findById(UUID id) {

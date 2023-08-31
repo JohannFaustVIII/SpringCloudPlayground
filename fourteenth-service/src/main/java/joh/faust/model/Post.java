@@ -2,7 +2,7 @@ package joh.faust.model;
 
 import java.util.UUID;
 
-public record Post(UUID id, String name, String content, User user) {
+public record Post(UUID id, String name, String content, UUID user) {
 
     public static Post fromEntity(joh.faust.entity.Post entityPost) {
         return fromEntity(
@@ -16,6 +16,6 @@ public record Post(UUID id, String name, String content, User user) {
                 entityPost.getId(),
                 entityPost.getName(),
                 entityPost.getContent(),
-                user);
+                user.id());
     }
 }

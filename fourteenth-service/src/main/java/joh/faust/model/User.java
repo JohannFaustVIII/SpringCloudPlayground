@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-public record User(UUID id, String name, List<Post> posts) {
+public record User(UUID id, String name, List<UUID> posts) {
 
     public static User fromEntity(joh.faust.entity.User entityUser) {
         return fromEntity(
@@ -21,7 +21,7 @@ public record User(UUID id, String name, List<Post> posts) {
         return new User(
                 entityUser.getId(),
                 entityUser.getName(),
-                posts
+                posts.stream().map(Post::id).collect(Collectors.toList())
         );
     }
 

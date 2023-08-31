@@ -24,7 +24,7 @@ public class PostQueryServiceImpl implements PostQueryService {
 
         return postProjection.getAllPosts()
                 .stream()
-                .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), null)) // TODO: FIND USER
+                .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), post.getCreatorId()))
                 .collect(Collectors.toList());
     }
 
@@ -33,7 +33,7 @@ public class PostQueryServiceImpl implements PostQueryService {
         PostProjection postProjection = context.getBean(PostProjection.class);
 
         return postProjection.findById(query.getId())
-                .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), null))// TODO: FIND USER
+                .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), post.getCreatorId()))
                 .orElseThrow(); // TODO: custom exception?
     }
 
@@ -42,7 +42,7 @@ public class PostQueryServiceImpl implements PostQueryService {
         PostProjection postProjection = context.getBean(PostProjection.class);
 
         return postProjection.findByName(query.getName())
-                .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), null))// TODO: FIND USER
+                .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), post.getCreatorId()))
                 .orElseThrow(); // TODO: custom exception?
     }
 }
