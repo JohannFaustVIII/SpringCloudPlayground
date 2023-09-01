@@ -34,7 +34,7 @@ public class PostQueryServiceImpl implements PostQueryService {
 
         return postProjection.findById(query.getId())
                 .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), post.getCreatorId()))
-                .orElseThrow(); // TODO: custom exception?
+                .orElseThrow(PostNotFoundException::new);
     }
 
     @Override
@@ -43,6 +43,10 @@ public class PostQueryServiceImpl implements PostQueryService {
 
         return postProjection.findByName(query.getName())
                 .map(post -> new Post(post.getPostId(), post.getPostName(), post.getPostContent(), post.getCreatorId()))
-                .orElseThrow(); // TODO: custom exception?
+                .orElseThrow(PostNotFoundException::new);
+    }
+
+    static class PostNotFoundException extends RuntimeException { // TODO: maybe add exception handler to return proper http code?
+
     }
 }
