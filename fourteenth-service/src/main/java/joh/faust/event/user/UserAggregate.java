@@ -3,14 +3,12 @@ package joh.faust.event.user;
 import joh.faust.event.ActionEvent;
 import joh.faust.event.Aggregate;
 import joh.faust.event.EventMetatype;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-@Component
 public class UserAggregate extends Aggregate {
 
     private final Map<UUID, User> users = new HashMap<>();

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
-@Service
+//@Service
 public class UserQueryServiceImpl implements UserQueryService {
 
     private final UserReadRepository repository;

@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
-@Component
+//@Component
 public class UserCommandServiceImpl implements UserCommandService {
 
     private final UserWriteRepository repository;

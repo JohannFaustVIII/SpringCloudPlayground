@@ -6,6 +6,7 @@ import joh.faust.query.model.PostById;
 import joh.faust.query.model.PostByName;
 import joh.faust.query.service.PostQueryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class PostQueryServiceImpl implements PostQueryService {
 
-    private ApplicationContext context; // TODO: to change? but need to load projection each time... to solve
+    private final ApplicationContext context; // TODO: to change? but need to load projection each time... to solve
+
+    @Autowired
+    public PostQueryServiceImpl(ApplicationContext context) {
+        this.context = context; // FIXME: context is null, why?
+    }
 
     @Override
     public List<Post> findAll() {

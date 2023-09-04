@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@Component
+//@Component
 public class PostCommandServiceImpl implements PostCommandService {
 
     private final PostWriteRepository repository;

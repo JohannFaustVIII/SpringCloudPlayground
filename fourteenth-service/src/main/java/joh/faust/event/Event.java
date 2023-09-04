@@ -1,9 +1,14 @@
 package joh.faust.event;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -14,6 +19,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 public class Event {
 
     // TODO: learn about projection and make the whole idea KISS
@@ -22,6 +28,9 @@ public class Event {
     // TODO: might be better to listen to changes (more like idea to use with message queue)
     // TODO: or apply only events after the given version of current projection (and that could work with db)
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @UuidGenerator
     private UUID id;
     private String eventType;
     private String aggregateType;

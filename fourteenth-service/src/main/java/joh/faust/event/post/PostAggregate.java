@@ -4,14 +4,12 @@ import joh.faust.event.ActionEvent;
 import joh.faust.event.Aggregate;
 import joh.faust.event.EventMetatype;
 import joh.faust.event.user.UserAggregate;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
-@Component
 public class PostAggregate extends Aggregate {
 
     private final Map<UUID, Post> posts = new HashMap<>();

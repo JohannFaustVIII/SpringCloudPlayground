@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
-@Component
+//@Component
 public class PostQueryServiceImpl implements PostQueryService {
 
     private final PostReadRepository repository;
