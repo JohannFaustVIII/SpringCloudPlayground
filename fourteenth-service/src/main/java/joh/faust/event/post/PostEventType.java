@@ -35,7 +35,7 @@ public enum PostEventType implements EventType {
     
     public static EventType getByClass(Class<? extends PostEvent> eventClass) {
         for (PostEventType type : PostEventType.values()) {
-            if (type.getEventClass().equals(eventClass)) {
+            if (type.getEventClass().isAssignableFrom(eventClass)) {
                 return type;
             }
         }

@@ -1,5 +1,6 @@
 package joh.faust.event.post;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import joh.faust.event.Aggregate;
 import joh.faust.event.Projection;
 import lombok.Builder;
@@ -20,14 +21,14 @@ public class PostNameUpdatedEvent extends PostEvent {
         this.newName = newName;
     }
 
-    public PostNameUpdatedEvent(UUID eventId, LocalDateTime created, UUID postId, String newName) {
+    public PostNameUpdatedEvent(@JsonProperty("eventId") UUID eventId, @JsonProperty("created") LocalDateTime created, @JsonProperty("postId") UUID postId, @JsonProperty("newName") String newName) {
         super(eventId, created);
         this.postId = postId;
         this.newName = newName;
     }
 
     @Override
-    public String getEventType() {
+    public String eventType() {
         return PostEventType.getByClass(getClass()).getType();
     }
 

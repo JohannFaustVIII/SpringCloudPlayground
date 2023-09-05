@@ -22,9 +22,9 @@ public abstract class ActionEvent {
         this.created = created;
     }
 
-    public abstract String getAggregateType();
+    public abstract String metaType();
 
-    public abstract String getEventType();
+    public abstract String eventType();
 
     public abstract void applyEvent(Aggregate aggregate);
 

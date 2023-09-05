@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 public class UserQueryServiceImpl implements UserQueryService {
 
-    private ApplicationContext context; // TODO: to change? but need to load projection each time... to solve
+    private final ApplicationContext context; // TODO: to change? but need to load projection each time... to solve
 
     @Autowired
     public UserQueryServiceImpl(ApplicationContext context) {

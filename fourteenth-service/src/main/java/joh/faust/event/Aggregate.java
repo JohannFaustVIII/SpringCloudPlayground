@@ -46,9 +46,9 @@ public abstract class Aggregate {
 
     protected Event createEvent(ActionEvent event) {
         return Event.builder()
-                .aggregateType(event.getAggregateType())
+                .aggregateType(event.metaType())
                 .version(this.version)
-                .eventType(event.getEventType())
+                .eventType(event.eventType())
                 .data(event.toBytes())
                 .created(LocalDateTime.now())
                 .build();

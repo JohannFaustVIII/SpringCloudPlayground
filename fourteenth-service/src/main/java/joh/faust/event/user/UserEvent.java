@@ -17,7 +17,7 @@ public abstract class UserEvent extends ActionEvent {
     }
 
     @Override
-    public String getAggregateType() {
+    public String metaType() {
         return EventMetatype.getByClass(getClass()).getType();
     }
 

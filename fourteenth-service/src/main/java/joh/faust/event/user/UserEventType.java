@@ -32,7 +32,7 @@ public enum UserEventType implements EventType {
 
     public static EventType getByClass(Class<? extends UserEvent> eventClass) {
         for (UserEventType type : UserEventType.values()) {
-            if (type.getEventClass().equals(eventClass)) {
+            if (type.getEventClass().isAssignableFrom(eventClass)) {
                 return type;
             }
         }

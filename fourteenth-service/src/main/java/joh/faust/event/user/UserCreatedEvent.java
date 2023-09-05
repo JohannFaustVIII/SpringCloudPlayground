@@ -1,5 +1,6 @@
 package joh.faust.event.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import joh.faust.event.Aggregate;
 import joh.faust.event.Projection;
 import lombok.Builder;
@@ -21,14 +22,14 @@ public class UserCreatedEvent extends UserEvent {
         this.userName = userName;
     }
 
-    public UserCreatedEvent(UUID eventId, LocalDateTime created, UUID newUserId, String userName) {
+    public UserCreatedEvent(@JsonProperty("eventId") UUID eventId, @JsonProperty("created") LocalDateTime created, @JsonProperty("newUserId") UUID newUserId, @JsonProperty("userName") String userName) {
         super(eventId, created);
         this.newUserId = newUserId;
         this.userName = userName;
     }
 
     @Override
-    public String getEventType() {
+    public String eventType() {
         return UserEventType.getByClass(getClass()).getType();
     }
 

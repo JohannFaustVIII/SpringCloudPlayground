@@ -1,5 +1,6 @@
 package joh.faust.event.post;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import joh.faust.event.Aggregate;
 import joh.faust.event.Projection;
 import lombok.Builder;
@@ -18,13 +19,13 @@ public class PostRemovedEvent extends PostEvent {
         this.removedPostId = removedPostId;
     }
 
-    public PostRemovedEvent(UUID eventId, LocalDateTime created, UUID removedPostId) {
+    public PostRemovedEvent(@JsonProperty("eventId") UUID eventId, @JsonProperty("created") LocalDateTime created, @JsonProperty("removedPostId") UUID removedPostId) {
         super(eventId, created);
         this.removedPostId = removedPostId;
     }
 
     @Override
-    public String getEventType() {
+    public String eventType() {
         return PostEventType.getByClass(getClass()).getType();
     }
 

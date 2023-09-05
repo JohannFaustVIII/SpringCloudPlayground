@@ -37,7 +37,7 @@ public enum EventMetatype {
 
     public static EventMetatype getByClass(Class<? extends ActionEvent> eventClass) {
         for (EventMetatype type : EventMetatype.values()) {
-            if (type.getEventClass().equals(eventClass)) {
+            if (type.getEventClass().isAssignableFrom(eventClass)) {
                 return type;
             }
         }
