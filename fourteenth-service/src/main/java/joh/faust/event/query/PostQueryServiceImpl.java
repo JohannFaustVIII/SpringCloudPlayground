@@ -5,7 +5,6 @@ import joh.faust.model.Post;
 import joh.faust.query.model.PostById;
 import joh.faust.query.model.PostByName;
 import joh.faust.query.service.PostQueryService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,7 @@ public class PostQueryServiceImpl implements PostQueryService {
 
     @Autowired
     public PostQueryServiceImpl(ApplicationContext context) {
-        this.context = context; // FIXME: context is null, why?
+        this.context = context;
     }
 
     @Override

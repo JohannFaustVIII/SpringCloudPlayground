@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
-// TODO: think if recreate fully, or to keep as singleton with updating on injection
 @Configuration
 public class ProjectionConfiguration {
 

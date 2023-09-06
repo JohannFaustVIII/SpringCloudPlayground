@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// abstraction to be extended by each aggregate of entity in service
 public abstract class Aggregate {
 
     private final EventMetatype eventMetatype;
@@ -46,9 +45,9 @@ public abstract class Aggregate {
 
     protected Event createEvent(ActionEvent event) {
         return Event.builder()
-                .aggregateType(event.metaType())
+                .aggregateType(event.getMetaType())
                 .version(this.version)
-                .eventType(event.eventType())
+                .eventType(event.getEventType())
                 .data(event.toBytes())
                 .created(LocalDateTime.now())
                 .build();

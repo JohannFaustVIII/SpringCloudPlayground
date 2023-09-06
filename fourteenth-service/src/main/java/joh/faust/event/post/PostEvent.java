@@ -18,7 +18,7 @@ public abstract class PostEvent extends ActionEvent {
     }
 
     @Override
-    public String metaType() {
+    public String getMetaType() {
         return EventMetatype.getByClass(getClass()).getType();
     }
 }

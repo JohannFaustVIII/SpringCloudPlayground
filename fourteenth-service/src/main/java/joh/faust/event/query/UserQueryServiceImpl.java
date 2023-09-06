@@ -5,7 +5,6 @@ import joh.faust.event.post.PostProjection;
 import joh.faust.event.user.UserProjection;
 import joh.faust.model.User;
 import joh.faust.query.service.UserQueryService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,7 @@ public class UserQueryServiceImpl implements UserQueryService {
 
     @Autowired
     public UserQueryServiceImpl(ApplicationContext context) {
-        this.context = context; // FIXME: context is null, why?
+        this.context = context;
     }
 
     @Override

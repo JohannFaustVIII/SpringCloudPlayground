@@ -10,15 +10,12 @@ import joh.faust.event.post.PostAggregate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
-// WIP
 @Component
 @RequiredArgsConstructor
 public class PostCommandServiceImpl implements PostCommandService {
 
     private final EventRepository eventRepository;
-    private final PostAggregate postAggregate; // how to load it?
+    private final PostAggregate postAggregate;
 
     @Override
     public void createPost(CreatePost command) {
@@ -28,7 +25,7 @@ public class PostCommandServiceImpl implements PostCommandService {
                 command.getCreatorId()
         );
 
-        eventRepository.saveAll(postAggregate.getChanges()); // will it save only new or all? should add only new, and update existing
+        eventRepository.saveAll(postAggregate.getChanges());
     }
 
     @Override

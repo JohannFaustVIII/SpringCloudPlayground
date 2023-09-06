@@ -1,12 +1,12 @@
 package joh.faust.event;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-// abstraction for internal use, to be extended by each event in the service
 @Getter
 public abstract class ActionEvent {
 
@@ -22,9 +22,11 @@ public abstract class ActionEvent {
         this.created = created;
     }
 
-    public abstract String metaType();
+    @JsonIgnore
+    public abstract String getMetaType();
 
-    public abstract String eventType();
+    @JsonIgnore
+    public abstract String getEventType();
 
     public abstract void applyEvent(Aggregate aggregate);
 

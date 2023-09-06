@@ -29,7 +29,7 @@ public class UserCreatedEvent extends UserEvent {
     }
 
     @Override
-    public String eventType() {
+    public String getEventType() {
         return UserEventType.getByClass(getClass()).getType();
     }
 

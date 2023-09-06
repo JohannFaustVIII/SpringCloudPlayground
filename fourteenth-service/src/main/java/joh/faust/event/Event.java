@@ -14,19 +14,12 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.UUID;
 
-// event to work as dto to db or event queue
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 public class Event {
-
-    // TODO: learn about projection and make the whole idea KISS
-    // TODO: now think about projection - aggregate generates event and handler is supposed to send it to db
-    // TODO: soo projection should always read all events from db and recreate state?
-    // TODO: might be better to listen to changes (more like idea to use with message queue)
-    // TODO: or apply only events after the given version of current projection (and that could work with db)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

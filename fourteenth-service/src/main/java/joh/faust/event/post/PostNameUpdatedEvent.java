@@ -28,7 +28,7 @@ public class PostNameUpdatedEvent extends PostEvent {
     }
 
     @Override
-    public String eventType() {
+    public String getEventType() {
         return PostEventType.getByClass(getClass()).getType();
     }
 

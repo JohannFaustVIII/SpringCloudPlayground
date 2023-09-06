@@ -7,7 +7,6 @@ import joh.faust.event.user.UserAggregate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-// WIP
 @Component
 @RequiredArgsConstructor
 public class UserCommandServiceImpl implements UserCommandService {
