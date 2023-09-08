@@ -7,7 +7,9 @@ import joh.faust.query.model.PostByName;
 import joh.faust.query.service.PostQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +52,8 @@ public class PostQueryServiceImpl implements PostQueryService {
                 .orElseThrow(PostNotFoundException::new);
     }
 
-    static class PostNotFoundException extends RuntimeException { // TODO: maybe add exception handler to return proper http code?
+    @ResponseStatus(reason = "Post ID not found.", code = HttpStatus.NOT_FOUND)
+    static class PostNotFoundException extends RuntimeException {
 
     }
 }

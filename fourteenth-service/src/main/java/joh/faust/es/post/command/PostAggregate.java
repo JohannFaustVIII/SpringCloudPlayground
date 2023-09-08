@@ -9,6 +9,8 @@ import joh.faust.es.post.event.PostCreatedEvent;
 import joh.faust.es.post.event.PostNameUpdatedEvent;
 import joh.faust.es.post.event.PostRemovedEvent;
 import joh.faust.es.user.command.UserAggregate;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -113,9 +115,11 @@ public class PostAggregate extends Aggregate {
         );
     }
 
+    @ResponseStatus(reason = "Creator ID not found.", value = HttpStatus.NOT_FOUND)
     private class PostUnknownCreatorIdException extends RuntimeException {
     }
 
+    @ResponseStatus(reason = "Post ID not found.", value = HttpStatus.NOT_FOUND)
     private class PostUnknownIdException extends RuntimeException {
     }
 }
