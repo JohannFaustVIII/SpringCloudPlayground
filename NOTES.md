@@ -15,6 +15,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [Why use mappedBy in bidirectional relationship?](#why-use-mappedby-in-bidirectional-relationship)
  - [How to use @JoinColumn annotation?](#how-to-use-joincolumn-annotation)
  - [When to use @ControllerAdvice?](#when-to-use-controlleradvice)
+ - [What is order of using ExceptionHandler?](#what-is-order-of-using-exceptionhandler)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -216,3 +217,11 @@ properties to false. That way of declaring relation is supposed to produce more 
 
 `@ControllerAdvice` is used to define a class handling exceptions from controllers. In simple words: to define global
 exception handler instead of defining exception handling in each controller separately.
+
+## What is order of using ExceptionHandler?
+
+Order is:
+1. Exception handler defined in controller in which exception happened.
+2. If above doesn't apply, then exception handler in controller advice.
+3. If above doesn't apply, then handling is done by response status defined for the exception.
+4. If above doesn't apply, then default exception handler is used.
