@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component
 public class PostQueryServiceImpl implements PostQueryService {
 
-    private final ApplicationContext context; // TODO: to change? but need to load projection each time... to solve
+    private final ApplicationContext context;
 
     @Autowired
     public PostQueryServiceImpl(ApplicationContext context) {
