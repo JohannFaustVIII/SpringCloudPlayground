@@ -5,10 +5,7 @@ import joh.faust.query.model.PostById;
 import joh.faust.query.model.PostByName;
 import joh.faust.query.service.PostQueryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -20,23 +17,19 @@ public class PostQueryController {
 
     private final PostQueryService postService;
 
+    @GetMapping(params = {"id"})
+    public Post getById(@RequestParam("id") UUID id) {
+        return postService.findPostById(new PostById(id));
+    }
+
+    @GetMapping(params = {"name"})
+    public Post getByName(@RequestParam("name") String name) {
+        return postService.findPostByName(new PostByName(name));
+    }
+
     @GetMapping
     public List<Post> getAll() {
         return postService.findAll();
     }
-
-    // TODO: below searches can be done better I think
-
-    @GetMapping("/id/{id}")
-    public Post getById(@PathVariable("id") UUID id) {
-        return postService.findPostById(new PostById(id));
-    }
-
-    @GetMapping("/name/{name}")
-    public Post getByName(@PathVariable("name") String name) {
-        return postService.findPostByName(new PostByName(name));
-    }
-
-
 
 }
