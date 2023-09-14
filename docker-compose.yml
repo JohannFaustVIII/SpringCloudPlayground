@@ -281,6 +281,16 @@ services:
     depends_on:
       - discovery
 
+  fifteenth:
+    image: fifteenth-local
+    environment:
+      SERVICE_PORT: 14015
+      EUREKA_URL: http://admin:examplePassword@discovery:18091/eureka/
+    expose:
+      - 14015
+    depends_on:
+      - discovery
+
   gateway:
     image: gateway-local:latest
     environment:

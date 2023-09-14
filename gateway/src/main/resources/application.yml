@@ -117,3 +117,9 @@ spring:
             - Path=/fourteenth/**
           filters:
             - StripPrefix=1
+        - id: fifteenthService
+          uri: lb://15-fifteenth-service
+          predicates:
+            - Path=/fifteenth/**
+          filters:
+            - StripPrefix=1
