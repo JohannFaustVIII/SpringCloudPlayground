@@ -1,0 +1,15 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URL:http://admin:examplePassword@localhost:18091/eureka/}
+  instance:
+    instanceId: ${random.value}
+    preferIpAddress: true
+
+
+spring:
+  application:
+    name: 16-sixteenth-service
+
+server:
+  port: ${SERVICE_PORT:0}
