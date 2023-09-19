@@ -17,4 +17,9 @@ public class SixteenthServiceApi {
     public String getHello() {
         return "Sixteenth Service:" + service.getMessage();
     }
+
+    @GetMapping("/exception")
+    public String getException() {
+        return "Sixteenth Service:" + service.getException();
+    }
 }
