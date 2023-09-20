@@ -8,17 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleAspect {
 
-    @Pointcut("execution(* joh.faust.service.SimpleService.getMessage())")
+    @Pointcut("execution(* joh.faust.service.SimpleService.*())")
     public void pointcut() {
 
     }
 
-    @Pointcut("execution(* joh.faust.service.SimpleService.getException())")
-    public void exceptionPointcut() {
-
-    }
-
-    @Before("execution(* joh.faust.service.SimpleService.getMessage())")
+    @Before("pointcut()")
     public void before() {
         System.out.println("Before point-cut expression logged");
     }
@@ -33,16 +28,21 @@ public class SimpleAspect {
         System.out.println("After finally pointcut targeted logged");
     }
 
-    @AfterThrowing(pointcut = "exceptionPointcut()")
+    @AfterThrowing(pointcut = "pointcut()")
     public void afterThrowing() {
         System.out.println("After throwing pointcut targeted logged");
     }
 
     @Around("pointcut()")
-    public void around(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         System.out.println("Around point-cut targeted logged - BEFORE");
-        joinPoint.proceed();
-        System.out.println("Around point-cut targeted logged - AFTER");
+        Object result;
+        try {
+            result = joinPoint.proceed();
+        } finally {
+            System.out.println("Around point-cut targeted logged - AFTER");
+        }
+        return result;
     }
 
 

@@ -16,6 +16,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [How to use @JoinColumn annotation?](#how-to-use-joincolumn-annotation)
  - [When to use @ControllerAdvice?](#when-to-use-controlleradvice)
  - [What is order of using ExceptionHandler?](#what-is-order-of-using-exceptionhandler)
+ - [What is order of advices in AOP?](#what-is-order-of-advices-in-aop)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -225,3 +226,15 @@ Order is:
 2. If above doesn't apply, then exception handler in controller advice.
 3. If above doesn't apply, then handling is done by response status defined for the exception.
 4. If above doesn't apply, then default exception handler is used.
+
+## What is order of advices in AOP?
+
+Order is:
+1. `Around` - the most powerful, but requires more handling than other advices. Interrupts the execution of a method, 
+and lets to add behavior - before and after the method. Because of that - requires to manually run the interrupted 
+method and to return its value.
+2. `Before` - executed before a method.
+3. `AfterReturning` - executed after a method, but only if method was executed without throwing an exception (because of that, it doesn't combine with AfterThrowing).
+4. `AfterThrowing` - executed after a method, but if method threw an exception (because of that, it doesn't combine with AfterReturning).
+5. `After` - can be named after finally, because it is executed after a method, doesn't matter if method threw an exception or not. 
+It combines with AfterRetuning and AfterThrowing, and is executed after both of them.
