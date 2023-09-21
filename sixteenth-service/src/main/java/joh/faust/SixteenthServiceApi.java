@@ -15,11 +15,13 @@ public class SixteenthServiceApi {
 
     @GetMapping("/")
     public String getHello() {
+        service.getSomething(15, "ABC");
         return "Sixteenth Service:" + service.getMessage();
     }
 
     @GetMapping("/exception")
     public String getException() {
+        service.getSomething(7, "A", "X", "Y", "Z", "Q", "MN");
         return "Sixteenth Service:" + service.getException();
     }
 }
