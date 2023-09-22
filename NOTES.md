@@ -17,6 +17,10 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [When to use @ControllerAdvice?](#when-to-use-controlleradvice)
  - [What is order of using ExceptionHandler?](#what-is-order-of-using-exceptionhandler)
  - [What is order of advices in AOP?](#what-is-order-of-advices-in-aop)
+ - [How to capture arguments in AOP?](#how-to-capture-arguments-in-aop)
+ - [How to capture returned value in AOP?](#how-to-capture-returned-value-in-aop)
+ - [How to capture thrown exception in AOP?](#how-to-capture-thrown-exception-in-aop)
+ - [Does overriding work with AOP?](#does-overriding-work-with-aop)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -238,3 +242,123 @@ method and to return its value.
 4. `AfterThrowing` - executed after a method, but if method threw an exception (because of that, it doesn't combine with AfterReturning).
 5. `After` - can be named after finally, because it is executed after a method, doesn't matter if method threw an exception or not. 
 It combines with AfterRetuning and AfterThrowing, and is executed after both of them.
+
+## How to capture arguments in AOP?
+
+There are two ways: by defining `args` or by `getArgs()` method.
+
+Defining `args` can be seen below:
+
+``` java
+
+    @Pointcut("execution(* joh.faust.service.SimpleService.*(..)) && args(a, b)")
+    public void pointcut2(int a, String[] b) {
+
+    }
+    
+    @Before("pointcut2(a, b)")
+    public void beforeGetArgs(int a, String[] b) {
+       // code...
+    }
+```
+
+Above, the pointcut is defined by `execution` and `args`. Defined `args` define how many arguments are expected to go into
+the method, and in `pointcut2` method declaration, types of these arguments are defined, because they have to match to 
+types of the pointcut method. Names in `args` and method declaration have to match too. By defining pointcut that way, 
+arguments can be read later in advice method.
+
+By using `getArgs()` method, a situation like below can be understood.
+
+```java
+    @Before("pointcut()")
+    public void before(JoinPoint joinPoint) {
+        // code...
+        Object[] args = joinPoint.getArgs();
+        // code...
+    }
+```
+
+In above situation, values of arguments can be read by using `getArgs()` method of `JoinPoint` interface. It returns an
+array with values passed into an interrupted method.
+
+## How to capture returned value in AOP?
+
+There are two situations: `@AfterReturning` and `@Around` advice.
+
+For `@AfterReturning` advice, the returned value can be read by declaring `returning` in the annotation, as below.
+
+```java
+    @AfterReturning(pointcut = "pointcut()", returning = "retVal")
+    public void afterReturning(JoinPoint joinPoint, Object retVal) {
+        // code...
+    }
+```
+
+The returned value is passed as argument with the same name as declared in `returning`.
+
+In `@Around` case, the value can be read when executing the wrapped method, as below.
+
+```java
+    @Around("pointcut()")
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        // code...
+        try {
+            // code...
+            Object result = joinPoint.proceed();
+            // code...
+        } finally {
+            // code...
+        }
+        // code...
+    }
+```
+
+As shown above, the value returned by wrapped method is a result of `proceed()` method.
+
+## How to capture thrown exception in AOP?
+
+Mainly it focuses on `@AfterThrowing` advice. The way to do it is as below:
+
+```java
+    @AfterThrowing(pointcut = "pointcut()", throwing = "ex")
+    public void afterThrowing(JoinPoint joinPoint, Exception ex) {
+        // code...
+    }
+```
+
+By using `throwing` in `@AfterThrowing` annotation, the exception is passed into the method via an argument with the same name
+as declared for `throwing`.
+
+The another way is in `@Around` advice, because as it wraps a call, it can catch the exception as below.
+
+```java
+    @Around("pointcut()")
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        // code...
+        try {
+            // code...
+            joinPoint.proceed();
+            // code...
+        } catch (Exception ex) {
+            // the exception is caught here and can be read
+        }
+        // code...
+    }
+```
+
+## Does overriding work with AOP?
+
+If used to declare many pointcuts via the same method name, like below:
+```java
+    @Pointcut("execution(* joh.faust.service.SimpleService.*(..))")
+    public void pointcut() {
+
+    }
+
+    @Pointcut("execution(* joh.faust.service.SimpleService.*()) && args(a, b)")
+    public void pointcut(int a, String[] b) {
+
+    }
+```
+
+Then it can cause errors.

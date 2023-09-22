@@ -5,6 +5,8 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+
 @Aspect
 @Component
 public class SimpleAspect {
@@ -14,10 +16,22 @@ public class SimpleAspect {
 
     }
 
+    @Pointcut("execution(* joh.faust.service.SimpleService.*(..)) && args(a, b)")
+    public void pointcut2(int a, String[] b) {
+
+    }
+
     @Before("pointcut()")
     public void before(JoinPoint joinPoint) {
         logArgs(joinPoint.getArgs(), "BEFORE");
         System.out.println("Before point-cut expression logged");
+    }
+
+    @Before("pointcut2(a, b)")
+    public void beforeGetArgs(int a, String[] b) {
+        System.out.println("Before advice triggered - args case");
+        System.out.println("A = " + a);
+        System.out.println("B = " + Arrays.toString(b));
     }
 
     @AfterReturning(pointcut = "pointcut()", returning = "retVal")
