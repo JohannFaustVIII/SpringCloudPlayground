@@ -16,5 +16,6 @@ My playground to learn Spring Cloud
 - Thirteenth - service using Liquibase to version H2 database, with two different profiles: dev and prod.
 - Fourteenth - service implementing an idea of CQRS with Event Sourcing.
 - Fifteenth - service showing work of exception handlers.
+- Sixteenth - service showing work of AOP.
 
 [My Notes](NOTES.md)
