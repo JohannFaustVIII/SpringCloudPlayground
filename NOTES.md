@@ -21,6 +21,8 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [How to capture returned value in AOP?](#how-to-capture-returned-value-in-aop)
  - [How to capture thrown exception in AOP?](#how-to-capture-thrown-exception-in-aop)
  - [Does overriding work with AOP?](#does-overriding-work-with-aop)
+ - [What is a discovery server?](#what-is-a-discovery-server)
+ - [What is a configuration server?](#what-is-a-configuration-server)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -362,3 +364,17 @@ If used to declare many pointcuts via the same method name, like below:
 ```
 
 Then it can cause errors.
+
+
+## What is a discovery server?
+
+Discovery server is a server holding information about running services in an environment. The information is got by 
+registration of a service in the server, so it could be read if needed. Multiple instances of a service can be registered.
+
+Example implementation of discovery server: Eureka.
+
+## What is a configuration server?
+
+Configuration server is a server holding configuration which can be read by other services. The configuration is defined
+as a resource to which configuration server can get access, for example: as git repository. Because of that, the configuration
+server has to be started before any service using it.
