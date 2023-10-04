@@ -378,3 +378,9 @@ Example implementation of discovery server: Eureka.
 Configuration server is a server holding configuration which can be read by other services. The configuration is defined
 as a resource to which configuration server can get access, for example: as git repository. Because of that, the configuration
 server has to be started before any service using it.
+
+## What is OpenFeign?
+
+OpenFeign is a library to send request to other services. Defined by setting url or service name if combined with 
+discovery server. It enables to use similar definitions as defining endpoints to define methods connected to other 
+services.
