@@ -23,6 +23,10 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [Does overriding work with AOP?](#does-overriding-work-with-aop)
  - [What is a discovery server?](#what-is-a-discovery-server)
  - [What is a configuration server?](#what-is-a-configuration-server)
+ - [What is OpenFeign?](#what-is-openfeign)
+ - [What is Spring Boot Actuator?](#what-is-spring-boot-actuator)
+ - [What is Kafka](#what-is-kafka)
+ - [What is a difference between OAuth and OpenID?](#what-is-a-difference-between-oauth-and-openid)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -384,3 +388,19 @@ server has to be started before any service using it.
 OpenFeign is a library to send request to other services. Defined by setting url or service name if combined with 
 discovery server. It enables to use similar definitions as defining endpoints to define methods connected to other 
 services.
+
+## What is Spring Boot Actuator?
+
+Spring Boot Actuator is a module enabling application monitoring. It lets to expose endpoints with built-in statistics
+like app's health, info, metrics etc., and add user-defined metrics and endpoints.
+
+## What is Kafka?
+
+Kafka is event streaming platform, so it is a pipeline to transport events, emitted by publishers, and sent to registered
+subscribers. Used in microservice architecture, as it is an external service.
+
+## What is a difference between OAuth and OpenID?
+
+OAuth is used for authorization, when OpenID is used to for authentication. So to simplify, use OpenID when you want to
+confirm your identity, and use OAuth when you want to confirm that you are permitted to access a resource.
+
