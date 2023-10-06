@@ -404,3 +404,11 @@ subscribers. Used in microservice architecture, as it is an external service.
 OAuth is used for authorization, when OpenID is used to for authentication. So to simplify, use OpenID when you want to
 confirm your identity, and use OAuth when you want to confirm that you are permitted to access a resource.
 
+## What is Jaeger?
+
+Jaeger is a tool to for distributed tracing. It is useful in microservice environment as it can trace communication
+between services, showing interactions between them and required trace to fulfill a single function by environment.
+
+## What is Micronaut?
+
+It is a library used as a facade between the application and distributed tracing tool.
