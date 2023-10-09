@@ -13,9 +13,9 @@ My playground to learn Spring Cloud
 - Tenth service - service sending traces to Jaeger via Micrometer.
 - Eleventh service - service implementing producing, streaming and consuming custom objects via Kafka stream.
 - Twelfth service - service using Spring Cache.
-- Thirteenth - service using Liquibase to version H2 database, with two different profiles: dev and prod.
-- Fourteenth - service implementing an idea of CQRS with Event Sourcing.
-- Fifteenth - service showing work of exception handlers.
-- Sixteenth - service showing work of AOP.
+- Thirteenth service - service using Liquibase to version H2 database, with two different profiles: dev and prod.
+- Fourteenth service - service implementing an idea of CQRS with Event Sourcing.
+- Fifteenth service - service showing work of exception handlers.
+- Sixteenth service - service showing work of AOP.
 
 [My Notes](NOTES.md)

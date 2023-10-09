@@ -27,6 +27,8 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is Spring Boot Actuator?](#what-is-spring-boot-actuator)
  - [What is Kafka](#what-is-kafka)
  - [What is a difference between OAuth and OpenID?](#what-is-a-difference-between-oauth-and-openid)
+ - [What is Jaeger?](#what-is-jaeger)
+ - [What is Micrometer?](#what-is-micrometer)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -165,7 +167,7 @@ public Employee getEmployee(String name) {
 
 ## What is Liquibase?
 
-Liquibase is a GIT, but for a database - it is a tool to control version of a database and monitor what was added/updated/removed.
+Liquibase is like a GIT, but for a database - it is a tool to control version of a database and monitor what was added/updated/removed.
 By using it, we can observe what, when and by whom was changed in a database. Why is it good? Because it takes responsibility 
 from JPA to manipulate database (and it should never be done! The only proper value of `spring.jpa.hibernate.ddlAuto` is 
 `validate` to check if fields and tables matches etc.). And it helps to make proper migration of a database on production.
@@ -409,6 +411,6 @@ confirm your identity, and use OAuth when you want to confirm that you are permi
 Jaeger is a tool to for distributed tracing. It is useful in microservice environment as it can trace communication
 between services, showing interactions between them and required trace to fulfill a single function by environment.
 
-## What is Micronaut?
+## What is Micrometer?
 
 It is a library used as a facade between the application and distributed tracing tool.
