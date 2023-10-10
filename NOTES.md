@@ -29,6 +29,11 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is a difference between OAuth and OpenID?](#what-is-a-difference-between-oauth-and-openid)
  - [What is Jaeger?](#what-is-jaeger)
  - [What is Micrometer?](#what-is-micrometer)
+ - [What is Kubernetes?](#what-is-kubernetes)
+ - [What is a pod in Kubernetes?](#what-is-a-pod-in-kubernetes)
+ - [What is a node in Kubernetes?](#what-is-a-node-in-kubernetes)
+ - [What is control plane?](#what-is-control-plane)
+ - [What is a cluster in Kubernetes?](#what-is-a-cluster-in-kubernetes)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -414,3 +419,29 @@ between services, showing interactions between them and required trace to fulfil
 ## What is Micrometer?
 
 It is a library used as a facade between the application and distributed tracing tool.
+
+## What is Kubernetes?
+
+Kubernetes is a tool to manage containerized workloads and services.
+
+## What is a pod in Kubernetes?
+
+Pod is a unit running a single container inside (but can more if required), being a facade between Kubernetes environment
+and the container. That solution decouples the rest of environment from implementation of container (like, we don't depend
+on Docker, but can run other implementations of containerization).
+
+## What is a node in Kubernetes?
+
+Node is an environment for pods to run. Node includes three components inside:
+- container runtime - to run containers inside a pod;
+- kubelet - makes sure that containers are running on a pod;
+- kube-proxy - network proxy.
+
+## What is control plane?
+
+Control plane is like a master node, used to manage creation of pods by choosing on which node it should run.
+Need to learn more to write more.
+
+## What is a cluster in Kubernetes?
+
+Cluster is a group of nodes and control planes working together. Need to learn more to write more.
