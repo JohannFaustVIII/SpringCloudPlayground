@@ -34,6 +34,8 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is a node in Kubernetes?](#what-is-a-node-in-kubernetes)
  - [What is control plane?](#what-is-control-plane)
  - [What is a cluster in Kubernetes?](#what-is-a-cluster-in-kubernetes)
+ - [What is Minikube?](#what-is-minikube)
+ - [What is Kubectl?](#what-is-kubectl)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -445,3 +447,12 @@ Need to learn more to write more.
 ## What is a cluster in Kubernetes?
 
 Cluster is a group of nodes and control planes working together. Need to learn more to write more.
+
+## What is Minikube?
+
+Minikube is a tool to create a single node K8s cluster with master and worker processes inside. It has Docker pre-intalled.
+Its main use is testing on local machine.
+
+## What is kubectl?
+
+Kubectl is command line tool to interact with K8s cluster, with a cloud cluster but with minikube cluster also.
