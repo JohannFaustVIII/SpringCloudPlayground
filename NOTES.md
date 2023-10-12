@@ -432,6 +432,9 @@ Pod is a unit running a single container inside (but can more if required), bein
 and the container. That solution decouples the rest of environment from implementation of container (like, we don't depend
 on Docker, but can run other implementations of containerization).
 
+Pod is an abstraction in K8s, and to create it, deployment has to be created at first. And they are not directly
+connected, because deployment manages replicaset, and replicaset manages pods, and pod manages containers.
+
 ## What is a node in Kubernetes?
 
 Node is an environment for pods to run. Node includes three components inside:
