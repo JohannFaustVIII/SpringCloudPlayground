@@ -37,6 +37,9 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is Minikube?](#what-is-minikube)
  - [What is Kubectl?](#what-is-kubectl)
  - [What is a structure of configuration file for Kubernetes?](#what-is-a-structure-of-configuration-file-for-kubernetes)
+ - [What is ConfigMap?](#what-is-configmap)
+ - [What is Secret?](#what-is-secret)
+ - [How to make an external service in K8s?](#how-to-make-and-external-service-in-k8s)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -474,3 +477,31 @@ as desired (like the number of replicas running).
 To match service with deployment, labels and selectors are used. Labels are defined in metadata of deployment, and selectors
 are defined in specification. Similarly, it is designed for ports of service. A service defined on which ports it is running,
 and to which port of pod the traffic should be forwarded. The port should be the same as port defined in pod blueprint.
+
+## What is ConfigMap?
+
+ConfigMap is a storage for external configuration. Can be defined in configuration file using kind `ConfigMap`. It contains
+values as key-value pairs, and can be referenced by other files via syntax (an example):
+```yaml
+	valueFrom:
+		configMapKeyRef:
+			name: db-config-map
+			key: db-url
+```
+
+## What is Secret?
+
+Secret is similar to ConfigMap, but it is used to store credentials inside. Can be defined in configuration file using 
+kind `Secret`. Values can be stored as key-value pairs, and can be referenced by other files via syntax(an example):
+```yaml
+	valueFrom:
+		secretKeyRef:
+			name: db-secret
+			key: db-root-username
+```
+
+## How to make and external service in K8s?
+
+Configuration with `Service` kind requires two things to be used as external service:
+1. Type of service has to be set to `LoadBalancer`, as it assigns an external IP address and accepts external requests.
+2. Has to define nodePort, which will be used to communicate with external IP address. (must be in range 30000-32767).
