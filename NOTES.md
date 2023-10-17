@@ -40,6 +40,8 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is ConfigMap?](#what-is-configmap)
  - [What is Secret?](#what-is-secret)
  - [How to make an external service in K8s?](#how-to-make-and-external-service-in-k8s)
+ - [What is namespace in Kubernetes?](#what-is-namespace-in-k8s)
+ - [When to use a namespace?](#when-to-use-a-namespace)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -505,3 +507,26 @@ kind `Secret`. Values can be stored as key-value pairs, and can be referenced by
 Configuration with `Service` kind requires two things to be used as external service:
 1. Type of service has to be set to `LoadBalancer`, as it assigns an external IP address and accepts external requests.
 2. Has to define nodePort, which will be used to communicate with external IP address. (must be in range 30000-32767).
+
+## What is namespace in K8s?
+
+Namespace can be seen as virtual cluster inside a real K8s cluster. It is used to organize resources.
+
+Default namespaces are:
+- k8s-dashboard - specific to minikube
+- kube-system - NOT to use, system processes, master and kubectl processes
+- kube-public - public data, configmap containing cluster information
+- kube-node-lease - heartbeats of nodes, determines the availability of nodes
+- default - default for created resources
+
+Limitations:
+- can't share ConfigMap and Secret between namespaces (so can't point to resource in another namespace), but can access
+service
+- volumes and nodes can't be created within a namespace, they are global for whole cluster
+
+## When to use a namespace?
+
+1. To group resources in namespaces, instead of using default.
+2. When many teams are working on a cluster, so virtual clusters (namespaces) can be helpful to make distinct deployments for each team.
+3. Staging and development on the same cluster, and share common resources between them.
+4. Blue/green deployment for application. Blue - active, green - next. Again sharing resources.
