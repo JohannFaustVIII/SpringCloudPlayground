@@ -42,6 +42,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [How to make an external service in K8s?](#how-to-make-and-external-service-in-k8s)
  - [What is namespace in Kubernetes?](#what-is-namespace-in-k8s)
  - [When to use a namespace?](#when-to-use-a-namespace)
+ - [What is Ingress?](#what-is-ingress)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -530,3 +531,14 @@ service
 2. When many teams are working on a cluster, so virtual clusters (namespaces) can be helpful to make distinct deployments for each team.
 3. Staging and development on the same cluster, and share common resources between them.
 4. Blue/green deployment for application. Blue - active, green - next. Again sharing resources.
+
+## What is Ingress?
+
+Let's take a step back first. There are two ways to get outside access to service defined in K8s:
+1. Defining service as external, then it can be reached. Way good for test cases, but not for production, as there is
+no domain name etc.
+2. Using Ingress, which works as entrypoint and can be reached from outside. Service is kept internal, and Ingress
+redirects requests to the service. Defined routing rules and domain name (and when IP address is assigned by K8s, it has
+to be mapped outside, in `/etc/hosts`).
+
+Ingress requires Ingress Controller (which is a pod) to evaluate and process Ingress rules.
