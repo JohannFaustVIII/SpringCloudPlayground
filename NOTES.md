@@ -43,6 +43,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is namespace in Kubernetes?](#what-is-namespace-in-k8s)
  - [When to use a namespace?](#when-to-use-a-namespace)
  - [What is Ingress?](#what-is-ingress)
+ - [What is Helm?](#what-is-helm)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -542,3 +543,17 @@ redirects requests to the service. Defined routing rules and domain name (and wh
 to be mapped outside, in `/etc/hosts`).
 
 Ingress requires Ingress Controller (which is a pod) to evaluate and process Ingress rules.
+
+## What is Helm?
+
+Helm is Package Manager and Templating Engine for Kubernetes.
+
+As Package Manager, it distributes and downloads Helm Charts from repositories. Helm Chart is a bundle of YAMl files (
+multiple configurations) created with Helm, such bundle can be used to deploy an app requiring many dependencies (multiple 
+configurations, for deployments, ConfigMap, Secrets etc.) to run a single service like database app or monitoring app.
+Helm Charts are used to share these bundles or get app with all deployment dependencies.
+
+As Template Engine, it is used to template files. Template file can be helpful for a scenario when there is an application
+with multiple microservices with common yaml structure, so Helm can define a common blueprint with dynamic values to be 
+replaced in placeholders. Another scenario is the same application across different environments (like development,
+staging and production), so it can be packaged into its own Helm Chart and to be used to deploy on multiple environments.
