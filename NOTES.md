@@ -44,6 +44,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [When to use a namespace?](#when-to-use-a-namespace)
  - [What is Ingress?](#what-is-ingress)
  - [What is Helm?](#what-is-helm)
+ - [What is volume?](#what-is-volume)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -557,3 +558,23 @@ As Template Engine, it is used to template files. Template file can be helpful f
 with multiple microservices with common yaml structure, so Helm can define a common blueprint with dynamic values to be 
 replaced in placeholders. Another scenario is the same application across different environments (like development,
 staging and production), so it can be packaged into its own Helm Chart and to be used to deploy on multiple environments.
+
+## What is volume?
+
+Volume is a storage in K8s, used to persist data between pod restarts. Volume has to be available on all nodes, because
+don't know on which node the pod will restart. Storage needs to survive even if the cluster crash. It can be seen as 
+external plugin to cluster. Volumes are not namespaced. Persistent volume is created as cluster resource, needs physical
+storage.
+
+Local volumes are tied to 1 specific node, and fails surviving cluster crash, so for db should be using remove volumes.
+
+K8s admin sets and maintains a cluster, when K8s user deploys application in the cluster. K8s admin will configure storage
+and volumes in it.
+
+Persistent volume claim is a claim made to get storage in a volume meeting requirements. It is referred by a pod to access
+to PVC. Claim has to be in the same namespace as the pod.
+
+ConfigMap and Secret are local volumes, and can be mounted as volumes into a pod. Pod can use different volume types.
+
+Storage Class provides persistent volumes dynamically when PVC claims it. It dynamically creates (or provides) a persistent
+volume when a claim is made.
