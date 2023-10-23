@@ -45,6 +45,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is Ingress?](#what-is-ingress)
  - [What is Helm?](#what-is-helm)
  - [What is volume?](#what-is-volume)
+ - [What is StatefulSet?](#what-is-statefulset)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -578,3 +579,16 @@ ConfigMap and Secret are local volumes, and can be mounted as volumes into a pod
 
 Storage Class provides persistent volumes dynamically when PVC claims it. It dynamically creates (or provides) a persistent
 volume when a claim is made.
+
+## What is StatefulSet?
+
+StatefulSet is a way to deploy stateful applications, like database or other application that stores data to keep its 
+state. Deployment is used for stateless application, and StatefulSet is for stateful applications, because replicating 
+pods is more difficult in this case.
+
+For stateful application, replica pods are not identical, as there is pod identity. First pod is a master pod and is the
+only one handling write requests, other pods are only for read requests. Pods are created in order, and only if the 
+previous pod is created and running. Pod state is kept and reattached to recreated pod if crashed (and it is important
+to use remote storage for it, as pod can be recreated on another node). Deleting pods is done in reverse order, starting
+from the last one. That causes that each pod has two endpoints, first for load balancing shared between all pods, and 
+individual service name for each pod. StatefulSet pod has fixed ordered name: $(statefulset-name)-$(number).
