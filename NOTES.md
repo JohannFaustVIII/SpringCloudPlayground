@@ -46,6 +46,8 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is Helm?](#what-is-helm)
  - [What is volume?](#what-is-volume)
  - [What is StatefulSet?](#what-is-statefulset)
+ - [What is K8s service and when we need it?](#what-is-k8s-service-and-when-we-need-it)
+ - [What are types of K8s service?](#what-are-types-of-k8s-service)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -592,3 +594,18 @@ previous pod is created and running. Pod state is kept and reattached to recreat
 to use remote storage for it, as pod can be recreated on another node). Deleting pods is done in reverse order, starting
 from the last one. That causes that each pod has two endpoints, first for load balancing shared between all pods, and 
 individual service name for each pod. StatefulSet pod has fixed ordered name: $(statefulset-name)-$(number).
+
+## What is K8s service and when we need it?
+
+Each pod has its own IP address, but pod are ephemeral, so recreated pod gets new IP address. Service provides stable IP 
+address to get access to pod.Next, service provides load balancing, to balance traffic between pods.
+
+## What are types of K8s service?
+
+1. ClusterIP Service - default service, internal service, so stable IP address and load balancing.
+2. Headless Service - for stateful applications, when we want to communicate with 1 specific pod directly. Defined by 
+setting clusterIP to None, so no IP address is assigned to service.
+3. NodePort - to let external traffic to have access to fixed port on each worker node, so requires defining targetPort, 
+port and nodePort. NodePort service is not secure as worker node ports are open. Not for production cases.
+4. LoadBalancer - accessible externally through cloud load balancer providers. So nodePort is not accessible externally, 
+but by load balancer service. Extension of NodePort and ClusterIP service type.
