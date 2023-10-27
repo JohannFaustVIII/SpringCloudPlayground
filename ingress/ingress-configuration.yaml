@@ -2,13 +2,29 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-simple
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: discovery.server.com
       http:
         paths:
         - pathType: Prefix
-          path: "/"
+          path: /first(/|$)(.*)
+          backend:
+            service:
+              name: first-service
+              port:
+                number: 4001
+        - pathType: Prefix
+          path: /discovery(/|$)(.*)
+          backend:
+            service:
+              name: discovery-service
+              port:
+                number: 8091
+        - pathType: Prefix
+          path: /()(eureka.*|$)
           backend:
             service:
               name: discovery-service

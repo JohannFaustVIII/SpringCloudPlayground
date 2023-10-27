@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: first-deployment
+  labels:
+    app: first
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: first
+  template:
+    metadata:
+      labels:
+        app: first
+    spec:
+      containers:
+        - name: first
+          image: first-local:latest
+          imagePullPolicy: Never
+          env:
+          - name: SERVICE_PORT
+            value: "14001"
+          - name: EUREKA_URL
+            value: "http://admin:examplePassword@discovery-service:8091/eureka/"
+          ports:
+            - containerPort: 14001
