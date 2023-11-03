@@ -17,6 +17,20 @@ spec:
               port:
                 number: 4001
         - pathType: Prefix
+          path: /fifth(/|$)(.*)
+          backend:
+            service:
+              name: fifth-service
+              port:
+                number: 4005
+        - pathType: Prefix
+          path: /sixth(/|$)(.*)
+          backend:
+            service:
+              name: sixth-service
+              port:
+                number: 4006
+        - pathType: Prefix
           path: /discovery(/|$)(.*)
           backend:
             service:

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fifth-deployment
+  labels:
+    app: fifth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fifth
+  template:
+    metadata:
+      labels:
+        app: fifth
+    spec:
+      containers:
+        - name: fifth
+          image: fifth-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14005"
+            - name: EUREKA_URL
+              value: "http://admin:examplePassword@discovery-service:8091/eureka/"
+            - name: SIX_SERVICE_NAME
+              value: 6-sixth-service
+          ports:
+            - containerPort: 14005
