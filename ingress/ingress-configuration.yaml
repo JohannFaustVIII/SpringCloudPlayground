@@ -31,6 +31,13 @@ spec:
               port:
                 number: 4006
         - pathType: Prefix
+          path: /fourteenth(/|$)(.*)
+          backend:
+            service:
+              name: fourteenth-service
+              port:
+                number: 4014
+        - pathType: Prefix
           path: /discovery(/|$)(.*)
           backend:
             service:
