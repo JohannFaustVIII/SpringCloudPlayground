@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: configuration-deployment
+  labels:
+    app: configuration
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: configuration
+  template:
+    metadata:
+      labels:
+        app: configuration
+    spec:
+      containers:
+        - name: fourteenth
+          image: configuration-server-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "8012"
+            - name: KAFKA_HOSTNAME
+              value: "kafka-service"
+            - name: KAFKA_PORT
+              value: "29092"
+            - name: GIT_URI
+              value: "https://github.com/JohannFaustVIII/SCPConfiguration"
+            - name: DEFAULT_LABEL
+              value: "docker"
+          ports:
+            - containerPort: 8012
