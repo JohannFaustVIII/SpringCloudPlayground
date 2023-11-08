@@ -24,6 +24,20 @@ spec:
               port:
                 number: 4002
         - pathType: Prefix
+          path: /third(/|$)(actuator.*)
+          backend:
+            service:
+              name: third-service
+              port:
+                number: 9876
+        - pathType: Prefix
+          path: /third(/|$)(.*)
+          backend:
+            service:
+              name: third-service
+              port:
+                number: 4003
+        - pathType: Prefix
           path: /fifth(/|$)(.*)
           backend:
             service:

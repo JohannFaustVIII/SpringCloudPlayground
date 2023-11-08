@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: third-deployment
+  labels:
+    app: third
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: third
+  template:
+    metadata:
+      labels:
+        app: third
+    spec:
+      containers:
+        - name: third
+          image: third-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14003"
+            - name: EUREKA_URL
+              value: "http://admin:examplePassword@discovery-service:8091/eureka/"
+            - name: INSTANCE_HOSTNAME
+              value: "third-service"
+          ports:
+            - name: service
+              containerPort: 14003
+            - name: actuator
+              containerPort: 9876
