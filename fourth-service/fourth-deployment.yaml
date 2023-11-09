@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fourth-deployment
+  labels:
+    app: fourth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fourth
+  template:
+    metadata:
+      labels:
+        app: fourth
+    spec:
+      containers:
+        - name: fourth
+          image: fourth-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14004"
+            - name: KAFKA_HOSTNAME
+              value: "kafka-service"
+            - name: KAFKA_PORT
+              value: "29092"
+            - name: CONFIG_SERVER_URL
+              value: "http://configuration-service:8012"
+          ports:
+            - containerPort: 14004

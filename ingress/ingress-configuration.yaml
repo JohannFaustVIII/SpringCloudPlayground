@@ -38,6 +38,13 @@ spec:
               port:
                 number: 4003
         - pathType: Prefix
+          path: /fourth(/|$)(.*)
+          backend:
+            service:
+              name: fourth-service
+              port:
+                number: 4004
+        - pathType: Prefix
           path: /fifth(/|$)(.*)
           backend:
             service:

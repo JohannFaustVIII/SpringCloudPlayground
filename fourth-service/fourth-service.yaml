@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fourth-service
+spec:
+  selector:
+    app: fourth
+  ports:
+    - protocol: TCP
+      port: 4004
+      targetPort: 14004
