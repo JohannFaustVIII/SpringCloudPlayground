@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tenth-deployment
+  labels:
+    app: tenth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tenth
+  template:
+    metadata:
+      labels:
+        app: tenth
+    spec:
+      containers:
+        - name: tenth
+          image: tenth-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14010"
+            - name: CONFIG_SERVER_URL
+              value: "http://configuration-service:8012"
+            - name: JAEGER_ENDPOINT
+              value: "http://jaeger-service:4318/v1/traces"
+          ports:
+            - containerPort: 14010

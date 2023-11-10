@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: eighth-service
+spec:
+  selector:
+    app: eighth
+  ports:
+    - protocol: TCP
+      port: 4008
+      targetPort: 14008

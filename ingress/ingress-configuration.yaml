@@ -10,6 +10,13 @@ spec:
       http:
         paths:
         - pathType: Prefix
+          path: /jaeger(/|$)(.*)
+          backend:
+            service:
+              name: jaeger-service
+              port:
+                number: 16686
+        - pathType: Prefix
           path: /first(/|$)(.*)
           backend:
             service:
@@ -58,6 +65,27 @@ spec:
               name: sixth-service
               port:
                 number: 4006
+        - pathType: Prefix
+          path: /eighth(/|$)(.*)
+          backend:
+            service:
+              name: eighth-service
+              port:
+                number: 4008
+        - pathType: Prefix
+          path: /ninth(/|$)(.*)
+          backend:
+            service:
+              name: ninth-service
+              port:
+                number: 4009
+        - pathType: Prefix
+          path: /tenth(/|$)(.*)
+          backend:
+            service:
+              name: tenth-service
+              port:
+                number: 4010
         - pathType: Prefix
           path: /fourteenth(/|$)(.*)
           backend:

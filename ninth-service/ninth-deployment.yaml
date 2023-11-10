@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ninth-deployment
+  labels:
+    app: ninth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ninth
+  template:
+    metadata:
+      labels:
+        app: ninth
+    spec:
+      containers:
+        - name: ninth
+          image: ninth-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14009"
+            - name: CONFIG_SERVER_URL
+              value: "http://configuration-service:8012"
+            - name: JAEGER_ENDPOINT
+              value: "http://jaeger-service:4318/v1/traces"
+          ports:
+            - containerPort: 14009

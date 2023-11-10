@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eighth-deployment
+  labels:
+    app: eighth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eighth
+  template:
+    metadata:
+      labels:
+        app: eighth
+    spec:
+      containers:
+        - name: eighth
+          image: eighth-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14008"
+            - name: CONFIG_SERVER_URL
+              value: "http://configuration-service:8012"
+            - name: JAEGER_ENDPOINT
+              value: "http://jaeger-service:4318/v1/traces"
+          ports:
+            - containerPort: 14008
