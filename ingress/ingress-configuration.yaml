@@ -9,13 +9,26 @@ spec:
     - host: discovery.server.com
       http:
         paths:
-        - pathType: Prefix
-          path: /jaeger(/|$)(.*)
-          backend:
-            service:
-              name: jaeger-service
-              port:
-                number: 16686
+          - pathType: Prefix
+            path: /()(.*)
+            backend:
+              service:
+                name: discovery-service
+                port:
+                  number: 8091
+    - host: jaeger.server.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /()(.*)
+            backend:
+              service:
+                name: jaeger-service
+                port:
+                  number: 16686
+    - host: service.server.com
+      http:
+        paths:
         - pathType: Prefix
           path: /first(/|$)(.*)
           backend:
@@ -93,17 +106,3 @@ spec:
               name: fourteenth-service
               port:
                 number: 4014
-        - pathType: Prefix
-          path: /discovery(/|$)(.*)
-          backend:
-            service:
-              name: discovery-service
-              port:
-                number: 8091
-        - pathType: Prefix
-          path: /()(eureka.*|$)
-          backend:
-            service:
-              name: discovery-service
-              port:
-                number: 8091
