@@ -120,3 +120,17 @@ spec:
               name: fourteenth-service
               port:
                 number: 4014
+        - pathType: Prefix
+          path: /fifteenth(/|$)(.*)
+          backend:
+            service:
+              name: fifteenth-service
+              port:
+                number: 4015
+        - pathType: Prefix
+          path: /sixteenth(/|$)(.*)
+          backend:
+            service:
+              name: sixteenth-service
+              port:
+                number: 4016

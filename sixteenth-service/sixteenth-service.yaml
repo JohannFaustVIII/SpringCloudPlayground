@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sixteenth-service
+spec:
+  selector:
+    app: sixteenth
+  ports:
+    - protocol: TCP
+      port: 4016
+      targetPort: 14016

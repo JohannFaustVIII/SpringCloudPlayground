@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sixteenth-deployment
+  labels:
+    app: sixteenth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sixteenth
+  template:
+    metadata:
+      labels:
+        app: sixteenth
+    spec:
+      containers:
+        - name: sixteenth
+          image: sixteenth-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14016"
+            - name: EUREKA_URL
+              value: "http://admin:examplePassword@discovery-service:8091/eureka/"
+          ports:
+            - containerPort: 14016
