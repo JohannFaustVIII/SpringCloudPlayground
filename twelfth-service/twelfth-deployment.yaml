@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: twelfth-deployment
+  labels:
+    app: twelfth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: twelfth
+  template:
+    metadata:
+      labels:
+        app: twelfth
+    spec:
+      containers:
+        - name: twelfth
+          image: twelfth-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14012"
+            - name: EUREKA_URL
+              value: "http://admin:examplePassword@discovery-service:8091/eureka/"
+            - name: REDIS_HOST
+              value: "redis-service"
+            - name: REDIS_PORT
+              value: "6379"
+          ports:
+            - containerPort: 14012
