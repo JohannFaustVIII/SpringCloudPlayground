@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-deployment
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+        - name: keycloak
+          image: bitnami/keycloak:latest
+          command:
+            - /opt/bitnami/keycloak/bin/kc.sh import --file=/opt/keycloak/data/import/realm.json --override true 2>/dev/null && /opt/bitnami/scripts/keycloak/run.sh --verbose
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - mountPath: /opt/keycloak/data/import
+              name: config
+          env:
+            - name: KEYCLOAK_ADMIN_USER
+              value: "admin"
+            - name: KEYCLOAK_ADMIN_PASSWORD
+              value: "admin"
+            - name: KEYCLOAK_MANAGEMENT_USER
+              value: "manager"
+            - name: KEYCLOAK_MANAGEMENT_PASSWORD
+              value: "manager"
+            - name: KEYCLOAK_DATABASE_HOST
+              value: "postgres-service"
+            - name: KEYCLOAK_DATABASE_NAME
+              value: "keycloak"
+            - name: KEYCLOAK_DATABASE_USER
+              value: "keycloak"
+            - name: KEYCLOAK_DATABASE_PASSWORD
+              value: "keycloak"
+            - name: KEYCLOAK_EXTRA_ARGS
+              value: "--hostname keycloak"
+      volumes:
+        - name: config
+          configMap:
+            name: keycloak-config
+            items:
+              - key: keycloak-config-map
+                path: realm.json
