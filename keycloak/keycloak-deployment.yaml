@@ -46,7 +46,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: keycloak-config
+            name: keycloak-config-map
             items:
-              - key: keycloak-config-map
+              - key: realm.json
                 path: realm.json
