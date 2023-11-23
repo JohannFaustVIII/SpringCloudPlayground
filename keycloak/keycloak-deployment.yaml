@@ -17,8 +17,8 @@ spec:
       containers:
         - name: keycloak
           image: bitnami/keycloak:latest
-          command:
-            - /opt/bitnami/keycloak/bin/kc.sh import --file=/opt/keycloak/data/import/realm.json --override true 2>/dev/null && /opt/bitnami/scripts/keycloak/run.sh --verbose
+          command: ["/bin/bash"]
+          args: ["-c", "/opt/bitnami/keycloak/bin/kc.sh import --file=/opt/keycloak/data/import/realm.json --override true 2>/dev/null && /opt/bitnami/scripts/keycloak/run.sh --verbose"]
           ports:
             - containerPort: 8080
           volumeMounts:
