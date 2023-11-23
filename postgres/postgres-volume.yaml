@@ -7,20 +7,11 @@ metadata:
 spec:
   capacity:
     storage: 10Gi
-  volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
-  storageClassName: local-storage
-  local:
-    path: "/data/pv0001/"
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - minikube
+  storageClassName: manual
+  hostPath:
+    path: "/mnt/data"
 ---
 
 apiVersion: v1
@@ -28,7 +19,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: postgres-pv-claim
 spec:
-  storageClassName: local-storage
+  storageClassName: manual
   accessModes:
     - ReadWriteMany
   resources:
