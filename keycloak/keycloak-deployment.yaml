@@ -42,7 +42,7 @@ spec:
             - name: KEYCLOAK_DATABASE_PASSWORD
               value: "keycloak"
             - name: KEYCLOAK_EXTRA_ARGS
-              value: "--hostname keycloak"
+              value: "--hostname keycloak.server.com"
       volumes:
         - name: config
           configMap:
