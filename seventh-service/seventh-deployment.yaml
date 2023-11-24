@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: seventh-deployment
+  labels:
+    app: seventh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: seventh
+  template:
+    metadata:
+      labels:
+        app: seventh
+    spec:
+      containers:
+        - name: seventh
+          image: seventh-local:latest
+          imagePullPolicy: Never
+          env:
+            - name: SERVICE_PORT
+              value: "14007"
+            - name: EUREKA_URL
+              value: "http://admin:examplePassword@discovery-service:8091/eureka/"
+            - name: JWK_URI
+              value: "http://keycloak.server.com/realms/SRealm/protocol/openid-connect/certs"
+          ports:
+            - containerPort: 14007
