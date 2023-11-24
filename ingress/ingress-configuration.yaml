@@ -26,6 +26,16 @@ spec:
                 name: jaeger-service
                 port:
                   number: 16686
+    - host: keycloak.server.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /()(.*)
+            backend:
+              service:
+                name: keycloak-service
+                port:
+                  number: 8080
     - host: service.server.com
       http:
         paths:
@@ -78,6 +88,13 @@ spec:
               name: sixth-service
               port:
                 number: 4006
+        - pathType: Prefix
+          path: /seventh(/|$)(.*)
+          backend:
+            service:
+              name: seventh-service
+              port:
+                number: 4007
         - pathType: Prefix
           path: /eighth(/|$)(.*)
           backend:
