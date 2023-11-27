@@ -88,13 +88,7 @@ spec:
               name: sixth-service
               port:
                 number: 4006
-        - pathType: Prefix
-          path: /seventh(/|$)(.*)
-          backend:
-            service:
-              name: seventh-service
-              port:
-                number: 4007
+
         - pathType: Prefix
           path: /eighth(/|$)(.*)
           backend:
@@ -158,3 +152,47 @@ spec:
               name: sixteenth-service
               port:
                 number: 4016
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-oauth2
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/auth-url: "http://oauth2.server.com/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "http://oauth2.server.com/oauth2/start?rd=$escaped_request_uri"
+spec:
+  rules:
+    - host: service.server.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: /seventh(/|$)(.*)
+            backend:
+              service:
+                name: seventh-service
+                port:
+                  number: 4007
+
+---
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-oauth2-proxy
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: oauth2.server.com
+      http:
+        paths:
+          - path: /oauth2
+            pathType: Prefix
+            backend:
+              service:
+                name: oauth2-service
+                port:
+                  number: 4180

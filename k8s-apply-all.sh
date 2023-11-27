@@ -18,6 +18,9 @@ kubectl apply -f keycloak/keycloak-config.yaml
 kubectl apply -f keycloak/keycloak-deployment.yaml
 kubectl apply -f keycloak/keycloak-service.yaml
 
+kubectl apply -f oauth2-proxy/oauth2-deployment.yaml
+kubectl apply -f oauth2-proxy/oauth2-service.yaml
+
 kubectl apply -f redis/redis-config.yaml
 kubectl apply -f redis/redis-deployment.yaml
 kubectl apply -f redis/redis-service.yaml
