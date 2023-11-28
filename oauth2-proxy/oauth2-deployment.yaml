@@ -17,13 +17,14 @@ spec:
       containers:
         - name: oauth2-proxy
           image: quay.io/oauth2-proxy/oauth2-proxy:latest
-          args: ['--provider=keycloak', '--login-url="keycloak.server.com/realms/SRealm/protocol/openid-connect/auth', '--redeem-url="keycloak.server.com/realms/SRealm/protocol/openid-connect/token"', '--profile-url="keycloak.server.com/realms/SRealm/protocol/openid-connect/userinfo"' ,'--validate-url="keycloak.server.com/realms/SRealm/protocol/openid-connect/userinfo"', '--email-domain=*', ]
-          env:
-            - name: OAUTH2_PROXY_CLIENT_ID
-              value: 'gateway-client'
-            - name: OAUTH2_PROXY_CLIENT_SECRET
-              value: 'XuP788Es8CYur4FGG84hf5PfEnnaMZR8'
-            - name: OAUTH2_PROXY_COOKIE_SECRET
-              value: 'NmVRQ3EyM3VWdkdsUEI3NkF4RzIwZz09'
           ports:
             - containerPort: 4180
+          args: ['--config=/etc/oauth2-proxy.cfg']
+          volumeMounts:
+            - name: oauth2-proxy-config
+              mountPath: '/etc/oauth2-proxy.cfg'
+              subPath: 'oauth2-proxy.cfg'
+      volumes:
+        - name: oauth2-proxy-config
+          configMap:
+            name: oauth2-proxy-config
