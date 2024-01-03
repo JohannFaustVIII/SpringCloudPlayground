@@ -48,6 +48,8 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is StatefulSet?](#what-is-statefulset)
  - [What is K8s service and when we need it?](#what-is-k8s-service-and-when-we-need-it)
  - [What are types of K8s service?](#what-are-types-of-k8s-service)
+ - [What is ELK?](#what-is-elk)
+
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -609,3 +611,18 @@ setting clusterIP to None, so no IP address is assigned to service.
 port and nodePort. NodePort service is not secure as worker node ports are open. Not for production cases.
 4. LoadBalancer - accessible externally through cloud load balancer providers. So nodePort is not accessible externally, 
 but by load balancer service. Extension of NodePort and ClusterIP service type.
+
+## What is ELK?
+
+ELK is stack of three main components: Elasticsearch, Logstash and Kibana. Main purpose of ELK is to gather data from a system, 
+filter and analyze them, and finally, visualize them to end user.
+
+Elasticsearch if search and analytics engine, used to process data.
+
+Logstash is a tool allowing to collect data from various source and send them to desired destination. The main role in ELK:
+send data to Elasticsearch.
+
+Kibana is a data visualization and exploration tool. It is used to read data from Elasticsearch and visualize them.
+
+Often, fourth component can be added: Beats. Beats is a family data shippers, working on different machines and systems.
+They main purpose is to send logs to Logstash or Elasticsearch.
