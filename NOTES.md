@@ -49,7 +49,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is K8s service and when we need it?](#what-is-k8s-service-and-when-we-need-it)
  - [What are types of K8s service?](#what-are-types-of-k8s-service)
  - [What is ELK?](#what-is-elk)
-
+ - [What is Twelve Factor App?](#what-is-twelve-factor-app)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -626,3 +626,21 @@ Kibana is a data visualization and exploration tool. It is used to read data fro
 
 Often, fourth component can be added: Beats. Beats is a family data shippers, working on different machines and systems.
 They main purpose is to send logs to Logstash or Elasticsearch.
+
+## What is Twelve Factor App?
+
+It is a methodology to build a scalable and maintainable SaaS (Software-as-a-service).
+Main factors are:
+- Codebase - Should be single codebase for the application, with multiple possible deployments.
+- Dependencies - Dependencies should be declared explicitly and isolated from the application.
+- Config - The application's configuration should be stored in the environment.
+- Backing services - Backing services should be treated as attached resources.
+- Build, release and run - The application should be built, released and run as an isolated unit.
+- Processes - The application should be executed as single or more stateless processes.
+- Port binding - The application's services should be exposed through port binding.
+- Concurrency - Scaling out should be done via adding more processes, not threads.
+- Disposability - The application should start and stop quickly.
+- Dev/prod parity - The dev, test and prod environments should be as similar as possible.
+- Logs - Logs should be treated as event streams.
+- Addmin processes - The application should run admin/maintenance tasks as one-off processes.
+
