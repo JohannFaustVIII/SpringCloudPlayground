@@ -50,6 +50,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What are types of K8s service?](#what-are-types-of-k8s-service)
  - [What is ELK?](#what-is-elk)
  - [What is Twelve Factor App?](#what-is-twelve-factor-app)
+ - [What are levels of Richardson Maturity Model?](#what-are-levels-of-richardson-maturity-model)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -644,3 +645,9 @@ Main factors are:
 - Logs - Logs should be treated as event streams.
 - Addmin processes - The application should run admin/maintenance tasks as one-off processes.
 
+## What are levels of Richardson Maturity Model?
+
+- Level 0 - everything done via a single endpoint using i.e. POX (plain old XML)
+- Level 1 - there are specified endpoints to handle requests
+- Level 2 - HTTP verbs are being used with endpoints (GET, POST, PUT, DELETE)
+- Level 3 - HATEOS, responses contain information about what we can do next (via sending available links inside a response)
