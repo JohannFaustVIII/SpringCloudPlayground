@@ -51,6 +51,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is ELK?](#what-is-elk)
  - [What is Twelve Factor App?](#what-is-twelve-factor-app)
  - [What are levels of Richardson Maturity Model?](#what-are-levels-of-richardson-maturity-model)
+ - [What is CAP Theorem?](#what-is-cap-theorem)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -651,3 +652,24 @@ Main factors are:
 - Level 1 - there are specified endpoints to handle requests
 - Level 2 - HTTP verbs are being used with endpoints (GET, POST, PUT, DELETE)
 - Level 3 - HATEOS, responses contain information about what we can do next (via sending available links inside a response)
+
+## What is CAP theorem?
+
+CAP theorem states that any distributed system can have at most two of below three properties.
+
+- Consistency
+- Availability
+- Partition Tolerance
+
+Consistency means that value written to one of servers, will be returned by any server in the system.
+Availability means that the server can't ignore a client's request, so there has to be a response.
+Partition Tolerance means that the network will allow to lose many messages between two nodes of the system.
+
+If distributed system has consistency and availability properties, it can't be partition tolerant, as it is required to 
+keep replication of data and keep system available.
+
+If distributed system has consistency and partition tolerance properties, it can't be available, because replication of 
+data may take forever.
+
+If distributed system has availability and partition tolerance, it can't keep consistency, as it has to respond and 
+replication messages may be lost, so false data will be returned.
