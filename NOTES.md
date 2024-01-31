@@ -52,6 +52,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is Twelve Factor App?](#what-is-twelve-factor-app)
  - [What are levels of Richardson Maturity Model?](#what-are-levels-of-richardson-maturity-model)
  - [What is CAP Theorem?](#what-is-cap-theorem)
+ - [What is CORS?](#what-is-cors)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -673,3 +674,8 @@ data may take forever.
 
 If distributed system has availability and partition tolerance, it can't keep consistency, as it has to respond and 
 replication messages may be lost, so false data will be returned.
+
+## What is CORS?
+
+CORS stands for Cross-Origin Resource Sharing. It is a mechanism, using HTTP headers to let server identify all other
+origins (domain, scheme, port) than its own, which should be permitted by browser to load resources.
