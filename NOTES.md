@@ -53,6 +53,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What are levels of Richardson Maturity Model?](#what-are-levels-of-richardson-maturity-model)
  - [What is CAP Theorem?](#what-is-cap-theorem)
  - [What is CORS?](#what-is-cors)
+ - [What is JDBI?](#what-is-jdbi)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -679,3 +680,8 @@ replication messages may be lost, so false data will be returned.
 
 CORS stands for Cross-Origin Resource Sharing. It is a mechanism, using HTTP headers to let server identify all other
 origins (domain, scheme, port) than its own, which should be permitted by browser to load resources.
+
+## What is JDBI?
+
+JDBI is open source library used to access a database. Its interface is supposed to be "friendlier" than low-level 
+interface of JDBC, but it is not an ORM, and is built on JDBC (or supposed to be). 
