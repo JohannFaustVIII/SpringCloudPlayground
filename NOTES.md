@@ -54,6 +54,7 @@ Here is a document where I explain some things (mainly to myself (probably)).
  - [What is CAP Theorem?](#what-is-cap-theorem)
  - [What is CORS?](#what-is-cors)
  - [What is JDBI?](#what-is-jdbi)
+ - [What is sidecar pattern?](#what-is-sidecar-pattern)
 
 ## Why to use @RefreshScope during update of configuration?
 
@@ -684,4 +685,11 @@ origins (domain, scheme, port) than its own, which should be permitted by browse
 ## What is JDBI?
 
 JDBI is open source library used to access a database. Its interface is supposed to be "friendlier" than low-level 
-interface of JDBC, but it is not an ORM, and is built on JDBC (or supposed to be). 
+interface of JDBC, but it is not an ORM, and is built on JDBC (or supposed to be).
+
+## What is sidecar pattern?
+
+Sidecar pattern is an architectural pattern. It is used to extend functionalities of an application. Often, it is used
+to separate functionalities like logging, configuration etc. to a separate container. When ran, main app and its sidecar
+are ran in two separate containers but on the same node in K8s. That way they can share resources, but work of the main
+app is independent of extra features work.
